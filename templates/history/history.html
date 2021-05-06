@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>历史</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../static/layui/css/layui.css" media="all">
+    <link rel="stylesheet" th:href="@{/static/css/common.css}">
+    <style>
+        body {
+            padding-left: 1rem;
+            padding-top: 1rem;
+            padding-right: 10rem;
+        }
+
+        .layui-inline-text {
+            color: white;
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+
+        .layui-inline {
+            color: white;
+        }
+        .layui-laypage a{
+            color: aliceblue;
+        }
+    </style>
+</head>
+<body>
+<div class="layui-inline">
+    <input id="init" style="display: none">
+    <div class="layui-inline">
+        开始:
+        <div class="layui-input-inline">
+            <input type="text" id="startTime" class="layui-input"
+                   placeholder="请选择开始时间">
+        </div>
+    </div>
+    <div class="layui-inline">
+        结束:
+        <div class="layui-input-inline" id="timeInput">
+            <input type="text" id="endTime" class="layui-input"
+                   placeholder="请选择结束时间">
+        </div>
+    </div>
+    <button class="layui-btn" data-type="reload">查询</button>
+</div>
+
+<table class="layui-hide" id="table" lay-filter="role"></table>
+<script th:src="@{/static/js/jquery.min.js?v=2.1.4}"></script>
+<script th:src="@{/static/layui/layui.js}" charset="utf-8"></script>
+<script th:src="@{/static/js/common.js}" charset="utf-8"></script>
+<script>
+    var tableHead = [//表头
+        {
+            field: 'id', title: 'ID', sort: true, align: 'center',
+            width: 100
+        }, {
+            field: 'sensorData', title: '数据', align: 'center'
+
+        }, {
+            field: 'drecordTime', title: '上报时间', width: 180, align: 'center'
+        }
+    ];
+    var deviceNumber;
+
+    function initTable() {
+        layui.use(['table', 'laydate'], function () {
+            var table = layui.table, form = layui.form, layer = layui.layer,
+                laydate = layui.laydate, $ = layui.$, endTime, startTime;
+            initTime();
+            //监听行工具事件
+            table.on('tool(role)', function (obj) {
+                var data = obj.data;
+                console.log(obj)
+            });
+
+            function tableInit(startTime, endTime) {
+                table.render({
+                    elem: '#table'
+                    , url: '../history/getHistoryList?deviceNumber='
+                        + deviceNumber + '&startTime=' + startTime + '&endTime=' + endTime
+                    //数据接口
+                    , cols: [tableHead], page: true //开启分页
+                });
+            }
+
+            function initTime() {
+                var myDate = new Date();//获取系统当前时间
+                endTime = myDate.getFullYear() + '-' + getFormatMonth(myDate.getMonth()) + '-' + getFormatDay(myDate.getDate());
+                myDate.setTime(myDate.getTime() - 15 * 24 * 60 * 60 * 1000);
+                startTime = myDate.getFullYear() + '-' + getFormatMonth(myDate.getMonth()) + '-' + getFormatDay(myDate.getDate());
+                tableInit(startTime, endTime);
+                //初始赋值
+                laydate.render({
+                    elem: '#endTime',
+                    value: endTime,
+                    isInitValue: true,
+                    max: endTime,
+                    theme: '#393D49'
+                });
+                laydate.render({
+                    elem: '#startTime',
+                    value: startTime,
+                    isInitValue: true,
+                    max: endTime,
+                    theme: '#393D49'
+                    , done: function (value, date) {
+                        var selectData = new Date(value.replace("-", "/").replace("-", "/"));
+                        selectData.setTime(selectData.getTime() + 15 * 24 * 60 * 60 * 1000);
+                        var maxTime = selectData.getFullYear() + '-' +
+                            getFormatMonth(selectData.getMonth()) + '-' + getFormatDay(selectData.getDate());
+                        $("#endTime").remove();
+                        $("#timeInput").html('<input type="text" id="endTime" class="layui-input" placeholder="请选择结束时间">');
+                        laydate.render({
+                            elem: '#endTime',
+                            value: maxTime,
+                            isInitValue: true,
+                            max: maxTime,
+                            min: value,
+                            theme: '#393D49'
+                        });
+                    }
+                });
+            }
+
+            function getFormatMonth(month) {
+                month = month + 1;
+                if (month < 10) {
+                    return "0" + month;
+                }
+                return month;
+            }
+
+            function getFormatDay(month) {
+                month = month;
+                if (month < 10) {
+                    return "0" + month;
+                }
+                return month;
+            }
+
+            $('#init').on('click', function () {
+                initTime();
+            });
+
+            $('.layui-inline .layui-btn').on('click', function () {
+                    endTime = $('#endTime').val();
+                    startTime = $('#startTime').val();
+                    console.log('deviceNumber=' + deviceNumber + '&startTime=' + startTime + '&endTime=' + endTime)
+                    try {
+                        var start = parseInt(startTime.replace('-', '').replace('-', ''));
+                        var end = parseInt(endTime.replace('-', '').replace('-', ''));
+                        if (end < start) {
+                            layer.msg('结束时间不能小于开始时间', {
+                                offset: '6px', icon: 0
+                            });
+                        }
+                    } catch (e) {
+                        console.log(e)
+                    }
+                    tableInit(startTime, endTime);
+                    // var type = $(this).data('type');
+                    // active[type] ? active[type].call(this) : '';
+
+                }
+            );
+        });
+    }
+
+</script>
+</body>
+</html>

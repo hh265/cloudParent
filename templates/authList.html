@@ -1,0 +1,104 @@
+<!DOCTYPE html><html xmlns:th="http://www.thymeleaf.org"></html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>设备详情</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" th:href="@{/static/layui/css/layui.css}" media="all">
+
+</head>
+<body>
+<form class="layui-form">
+    <div class="layui-form-item">
+        <label class="layui-form-label">角色名称</label>
+        <div class="layui-input-block">
+            <input class="layui-input" type="text" name="name"  readonly="readonly"/>
+            <input  type="hidden" name="roleId" id="roleId" th:value="*{roleId}" />
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">选择权限</label>
+        <div class="layui-input-block">
+            <div id="LAY-auth-tree-index"></div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <a class="layui-btn  layui-btn-radius" id="submit">提交</a>
+
+        </div>
+    </div>
+</form>
+</body>
+<script th:src="@{/static/js/jquery.min.js?v=2.1.4}"></script>
+<script th:src="@{/static/layui/layui.js}"  charset="utf-8"></script>
+<script>
+    var myIframe = parent.layer.getFrameIndex(window.name);
+    layui.config({
+        base: '../static/module/',
+    }).extend({
+        authtree: 'authtree',
+    });
+    layui.use(['jquery', 'authtree', 'form', 'layer'], function(){
+        var $ = layui.jquery;
+        var authtree = layui.authtree;
+        var form = layui.form;
+        var layer = layui.layer;
+        var roleId = $("#roleId").val();
+        // 一般来说，权限数据是异步传递过来的
+        $.ajax({
+            url: '../roleManage/getAuthList?roleId='+roleId,
+            dataType: 'json',
+            success: function(result){
+
+                console.log("data="+result.data);
+                var trees = authtree.listConvert(result.data.list, {
+                    primaryKey: 'id'
+                    ,startPid: 0
+                    ,parentKey: 'parentId'
+                    ,nameKey: 'name'
+                    ,valueKey: 'id'
+                    ,checkedKey: result.data.checkedId
+                });
+                console.log("trees="+trees);
+                // 如果后台返回的不是树结构，请使用 authtree.listConvert 转换
+                authtree.render('#LAY-auth-tree-index', trees, {
+                    inputname: 'authids[]',
+                    layfilter: 'lay-check-auth',
+                    autowidth: true,
+                });
+            }
+        });
+        $("#submit").click(function(){
+            var authids = authtree.getChecked('#LAY-auth-tree-index');
+            console.log(authids);
+            var rights='';
+            for (var i=0;i<authids.length;i++)
+            {
+                if(i==authids.length-1){
+                    rights+=authids[i];
+                }else{
+                    rights+=authids[i]+",";
+                }
+
+            }
+
+            $.ajax({
+                url: '../roleManage/updateAuth',
+                dataType: 'json',
+                data: {
+                    roleId:roleId,
+                    rights:rights,
+                },
+                success: function(res){
+                    parent.layer.msg('提交成功！',{icon:1});
+                    parent.layer.close(myIframe);
+                }
+            });
+
+        })
+    });
+</script>
+</html>

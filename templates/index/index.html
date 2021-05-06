@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${system_name}"></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
+    <meta name="author" content="Muhammad Usman">
+    <link rel="stylesheet" th:href="@{/static/css/index/main.css?v=1}" media="all">
+    <link rel="stylesheet" th:href="@{/static/css/index/app.css}" media="all">
+    <style>
+        body {
+            /*background-color: #C47B8E;*/
+            background-color: #3498DB;
+            display: flex;
+        }
+
+        .main-centent {
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(to bottom, #3498DB 0%, #FDA5D2 100%);
+            /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        }
+        #screen {
+            background: linear-gradient(to bottom, #3498DB 0%, #FDA5D2 100%);
+        }
+        onc
+    </style>
+</head>
+<body>
+<div class="main-centent">
+    <div class="row">
+        <div class="col-sm-2 col-lg-2">
+            <div class="sidebar-nav">
+                <div class="nav-canvas">
+                    <div class="nav-sm nav nav-stacked">
+                    </div>
+                    <li class="nav-header"></li>
+                    <ul class="nav nav-pills nav-stacked main-menu" style="margin-top: 3rem">
+
+                        <li th:each="menu,iterStat : ${menus}">
+                            <a class="ajax-link" href="javascript:;" th:onclick="|onJump('${menu.url}')|">
+                                <i th:class="${menu.icon}"></i>
+                                <span th:text="${menu.name}"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <noscript>
+            <div class="alert alert-block col-md-12">
+                <h4 class="alert-heading">Warning!</h4>
+
+                <p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a>
+                   enabled to use this site.</p>
+            </div>
+        </noscript>
+        <div id="content" class="col-lg-10 col-sm-10">
+            <div>
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="monitor">大数据中心</a>
+                    </li>
+                    <li>
+                        <a href="testhh">hh</a>
+                    </li>
+                    <li>
+                        <a href="testhh/testhhh">hhh</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="row box col-md-12" id="frame_content">
+                <iframe src="home" style="height: 80vh;width: 80vw;border: 0;position: absolute"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+<canvas id="screen" > 您的浏览器不支持canvas标签，请您更换浏览器</canvas>
+<script th:src="@{/static/js/jquery.min.js?v=2.1.4}"></script>
+<script src="https://wow.techbrood.com/libs/three.r73.js"></script>
+<!--<script th:src="@{/static/js/main.js}"></script>
+<script th:src="@{/static/js/commonFunctions.js}"></script>
+<script th:src="@{/static/js/starts.js}"></script>-->
+<script th:src="@{/static/js/canvas.js}"></script>
+<script>
+
+    function onJump(url) {
+        document.getElementById('frame_content').innerHTML = '<iframe src="' + url + '" style="height: 80vh;width: 80vw;border: 0"></iframe>';
+    }
+
+
+   /* var canvas = document.getElementById("canvas");
+    var can = canvas.getContext("2d");
+    var s = window.screen;
+    var w = canvas.width = s.width;
+    var h = canvas.height = s.height;
+
+    can.fillStyle = color1();
+
+    /!*效果：创建一个255个元素的数组，并初始化值为“1”，及255个元素都是字符串1
+      原理：Array(256)有256个元素的空数组，
+      join(1)将数据每个元素用1连接起来成一个字符串（256个数组需要用255个1连接），
+      所以就是255个1组成的字符串，split('')将255个1分割成长度为255的数组*!/
+    var words = Array(256).join("1").split("");
+
+    setInterval(draw, 50);//setInterval() 方法可按照指定的周期（以毫秒计）来调用函数或计算表达式。
+
+    function draw() {
+        var my_gradient=can.createLinearGradient(0,0,0,670);
+        my_gradient.addColorStop(0,"#2A85DE");
+        my_gradient.addColorStop(0.5,"#C47B8E");
+        my_gradient.addColorStop(1,"#731D38");
+        can.fillStyle = my_gradient;
+        can.fillRect(0, 0, w, h);
+
+        can.fillStyle = color2();
+        words.map(function (y, n) {
+            text = String.fromCharCode(Math.ceil(65 + Math.random() * 57)/!*随机数字*!/);//math.ceil(i) 大于等于i的最小整数  fromCharCode将 Unicode 编码转为一个字符:
+            x = n * 10;//动态效果的宽度
+            can.fillText(text, x, y)//画布上写文本
+            words[n] = (y > 758 + Math.random() * 484 ? 0 : y + 10);
+        });
+    }
+
+    function color1() {
+        var colors = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f'];
+        var color = "";
+        for (var i = 0; i < 6; i++) {
+            var n = Math.ceil(Math.random() * 15);
+            color += "" + colors[n];
+        }
+        return '#00' + color;
+    }
+
+    function color2() {
+        var color = Math.ceil(Math.random() * 16777215).toString(16);
+        while (color.length < 6) {
+            color = '0' + color;
+        }
+        return '#' + color;
+    }
+
+    function color3() {
+        return "#" + (function (color) {
+            return new Array(7 - color.length).join("0") + color;
+        })((Math.random() * 0x1000000 << 0).toString(16))
+    }*/
+
+</script>
+</body>
+</html>

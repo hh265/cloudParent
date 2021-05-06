@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link href="" rel="stylesheet">
+    <link rel="stylesheet" href="layui/css/layui.css">
+</head>
+
+<body>
+<div id="demo"></div>
+</body>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.js"></script>
+<script src="layui/layui.js"></script>
+<script type="text/javascript">
+    var datas = [{
+        "id": "-1",
+        "name": "根目录",
+        "children": []
+    }];
+    var tree;
+    layui.use(['tree', 'layer'], function () {
+        var layer = layui.layer;
+        tree = layui.tree({
+            elem: '#demo',
+            check: 'checkbox',              //输入checkbox则生成带checkbox的tree, 默认不带checkbox
+            skin: 'as',                     //设定皮肤
+            drag: true,                     //点击每一项时是否生成提示信息
+            checkboxName: 'selectedArr',    //复选框的name属性值
+            checkboxStyle: "",              //设置复选框的样式，必须为字符串，css样式怎么写就怎么写
+            click: function (item) {          //节点点击事件
+                layer.msg('当前节名称：' + item.name + '<br>全部参数：' + JSON.stringify(item));
+                console.log(item);
+            },
+            nodes: datas,
+        });
+    });
+    $.ajax({
+        url: "group/selGroupList",
+        data: {},
+        dataType: "json",
+        type: "get",
+        timeout: 30000,
+        error: function (data, type, err) {
+            console.log(err);
+            layer.msg('获取失败');
+        },
+        success: function (data) {
+            // layer.closeAll('loading');
+            if (data.state == 'success') {
+                datas.push(data.datas);
+                console.log('length：' + datas.length);
+                tree.expand();
+            } else {
+                layer.msg(data.msg)
+            }
+        }
+    });
+</script>
+
+</html>

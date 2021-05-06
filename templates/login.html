@@ -1,0 +1,162 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" th:href="@{/static/layui/css/layui.css}" media="all">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/normalize.css}" />
+    <!--  <link rel="stylesheet" type="text/css" th:href="@{/static/css/demo.css}" />-->
+    <!--必要样式-->
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/component.css}" />
+    <style>
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover,
+        input:-webkit-autofill:focus {
+            /*box-shadow: 0 0 0 1000px #1a3848 inset;*/
+            /*-webkit-text-fill-color: #fff;*/
+            -webkit-transition-delay: 99999s;
+            -webkit-transition: color 99999s ease-out, background-color 99999s ease-out;
+        }
+        .ifram_back {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        /*.demo-1 .large-header {*/
+        /*    background: rgb(31, 31, 31);*/
+        /*}*/
+
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+           /* background-color: black;*/
+            width: 100vw;
+            height: 100vh;
+        }
+        .dg{
+            display: none;
+        }
+
+        body{
+            padding: 0;
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            /*background: linear-gradient(to bottom, #ABFCAB 0%, #64BAAD 100%);*/
+        }
+
+
+
+    </style>
+</head>
+<body onkeydown="keyLogin()">
+<input class="system_name" hidden="hidden" th:value="${system_name}">
+<input class="isTrue" hidden="hidden" th:value="${isTrue}">
+<div class="hh">
+    <!--<canvas id="c"></canvas>-->
+        <canvas id="triangle-lost-in-space" resize="true"></canvas>
+    <div class="logo_box">
+        <h3 class="h3">管理系统</h3>
+        <form action="/index" name="f" id="loginForm" method="post">
+            <div class="input_outer">
+                <span class="u_user"></span>
+                <input name="userName" class="text" id="userName"
+                       style="color: #FFFFFF !important" type="text" placeholder="请输入账户">
+            </div>
+            <div class="input_outer">
+                <span class="us_uer"></span>
+                <input name="password" class="text" id="password"
+                       style="color: #FFFFFF !important; position:absolute; z-index:100;"
+                       value="" type="password" placeholder="请输入密码">
+            </div>
+            <div class="mb2"><a class="act-but submit" href="javascript:;"
+                                onclick="doLogin()" id="input1" style="color: #FFFFFF">登录</a></div>
+            <!--<div class="mb2"><a id="register" class="act-but submit" href="/register"-->
+            <!--style="color: #FFFFFF">注册</a></div>-->
+        </form>
+    </div>
+</div>
+<script th:src="@{/static/js/jquery.min.js?v=2.1.4}"></script>
+<script th:src="@{/static/layui/layui.js}" charset="utf-8"></script>
+<script th:src="@{/static/js/html5.js}"></script>
+<script th:src="@{/static/js/TweenLite.min.js}"></script>
+<script th:src="@{/static/js/EasePack.min.js}"></script>
+<script th:src="@{/static/js/rAF.js}"></script>
+<script th:src="@{/static/js/dat.gui.min.js}"></script>
+<script th:src="@{/static/js/canvasIndex.js}"></script>
+<script src="/static/js/paper-full.min.js"></script>
+<script type="text/javascript" src="/static/js/lost.js"></script>
+<script language='javascript' th:inline="javascript">
+
+    var isTrue=$(".isTrue").val()
+    var system_name=$(".system_name").val()
+    if (isTrue=="true") {
+        $(".h3").text(system_name);
+    }
+
+    var ctxs = [[${#httpServletRequest.getContextPath()}]];
+    layui.use(['layer', 'form'], function () {
+
+        var layer = layui.layer;
+
+
+    });
+
+    function keyLogin() {
+        if (event.keyCode==13){
+            document.getElementById("input1").click();
+        }
+    }
+
+    function doLogin() {
+        var userName = $('#userName').val();
+        var password = $('#password').val();
+        if (userName == '') {
+            var msg = "请输入账号！";
+            layer.msg(msg);
+            return false;
+        }
+        if (password == '') {
+            var msg = "请输入密码！";
+            layer.msg(msg);
+            return false;
+        }
+        if (password.length > 0 && userName.length > 0) {
+            var param = {
+                userName: userName,
+                password: password
+
+            };
+            $.ajax({
+                type: "post",
+                url: ctxs + "/index/login",
+                data: param,
+                success: function (result) {
+
+                    console.log(result);
+                    if (result.state == 'success') {
+
+
+                        window.location.href = ctxs + "/monitor";
+                    } else {
+                        layer.msg(result.msg);
+                    }
+                }
+            });
+        }
+    }
+
+</script>
+<script language="JavaScript">
+
+    if (window != top)
+
+        top.location.href = location.href;
+
+</script>
+</body>
+</html>

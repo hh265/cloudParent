@@ -1,0 +1,3271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!--jquery需要引入的文件-->
+    <script src="../../static/js/jquery.min.js?v=2.1.4"></script>
+    <script src="../../static/i18n/jquery.i18n.properties.js"></script>
+    <script src="../../static/js/echarts.min.js"></script>
+    <script src="../../static/js/layui.js" charset="utf-8"></script>
+    <!-- <link rel="stylesheet" href="../../static/layui/css/layui.css" media="all"> -->
+    <title>云厨数字物联大数据中心</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .content_bigdata {
+            width: 5107px;
+            height: 1080px;
+            /*width: 100%;*/
+            /*height: 100vh;*/
+            background-color: #121722;
+            overflow: hidden;
+            overflow-x: auto;
+            overflow-y: auto;
+        }
+
+        .header {
+            height: 10vh;
+            width: 100%;
+            background-color: #121722;
+            display: flex;
+            justify-content: space-around;
+            flex-direction: row;
+        }
+
+        /* .main {
+            width: 5107px;
+            height: 9080px;
+            background-color: rgb(28, 29, 31);
+        } */
+
+        .imgHeader1 {
+            width: 33%;
+            height: 3vh;
+            background: url('../../static/img/bigdata/bigdatabg_13.png') no-repeat ;
+            background-size: 100% 100%;
+        }
+
+        .time_div {
+            /*width: 300px;*/
+            /*height: 40px;*/
+            /* background-color: fuchsia; */
+            color: #fff;
+            font-size:1.5vh;
+            position: absolute;
+            top: 0.5vh;
+            left: 1vw;
+        }
+
+
+        .imgHeader2 {
+            width: 33%;
+            height: 7vh;
+            background: url('../../../img/bigdata/bigdatabg_02.png') no-repeat;
+            background-size: 100% 100%;
+        }
+
+        .imgHeader3 {
+            width: 30%;
+            height: 3vh;
+            background: url('../../static/img/bigdata/bigdatabg_15.png') no-repeat;
+            background-size: 100% 100%;
+        }
+
+        .main {
+            width: 100%;
+            height: 980px;
+            background-color: #121722;
+            display: flex;
+            justify-content: space-around;
+            flex-direction: row;
+            font-size: 15px;
+        }
+
+        .mainRow1 {
+            width: 1000px;
+            height: 980px;
+        }
+
+        .mainRow1_top {
+            width: 1000px;
+            height: 100px;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            /* background-color: rgb(124, 30, 30); */
+            text-align: center;
+            line-height: 100px;
+            font-size: 40px;
+            color: #03dff5;
+        }
+
+        .Topimg1 {
+            width: 200px;
+            height: 100px;
+            /* background-color: green; */
+        }
+
+        .Topimg2 {
+            width: 200px;
+            height: 100px;
+            /* background-color: green; */
+        }
+
+        .mainRow1_bottom {
+            width: 1000px;
+            height: 662px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        .mainRow1_bottoms {
+            width: 1000px;
+            height: 856px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+        }
+
+        .mainRow1_left {
+            width: 496px;
+            height: 662px;
+            /* background-color: rgb(66, 100, 66); */
+            display: flex;
+            justify-content: space-evenly;
+            flex-direction: column;
+        }
+
+        .mainRow1_left1 {
+            width: 496px;
+            height: 380px;
+            background: url('../../static/img/bigdata/bigdata_20.png') no-repeat center/496px 380px;
+        }
+
+        .mainRow1_left1_body {
+            height: 290px;
+            /* background-color: lightslategray; */
+            margin-left: -10px;
+            margin-top: 30px;
+        }
+
+        .mainRow1_left1_body li {
+            width: 120px;
+            height: 100px;
+            background-color: rgba(8, 100, 146, 0.2);
+            float: left;
+            margin: 15px;
+            list-style: none;
+            text-align: center;
+            color: #fff;
+        }
+
+        .mainRow1_left1_body li p {
+            margin: 10px 10px;
+            margin-top: 5px;
+        }
+
+        .li_text1 {
+            font-size: 30px;
+            color: #00aeff;
+        }
+
+
+
+        .mainRow_left_title {
+            width: 350px;
+            height: 50px;
+            /* background-color: khaki; */
+            vertical-align: middle;
+            margin-top: 8px;
+            margin-left: 20.5px;
+        }
+
+        .mainRow_left_titles {
+            display: inline-block;
+            width: 220px;
+            height: 50px;
+            font-size: 28px;
+            color: #00aeff;
+            line-height: 50px;
+            background: url('../../static/img/bigdata/bigdata_41.png') no-repeat center/250px 50px;
+            /*background-color: lightskyblue;*/
+            vertical-align: middle;
+            text-indent: 0.5em;
+        }
+
+        .mainRow_left_title img {
+            vertical-align: middle;
+            height: 50px;
+            margin-left: -7px;
+        }
+
+        .mainRow1_left2 {
+            width: 496px;
+            height: 200px;
+            background: url('../../static/img/bigdata/bigdata_10.png') no-repeat center/496px 200px;
+
+        }
+
+        .mainRow1_left2_body {
+            height: 120px;
+            text-align: center;
+        }
+
+        .mainRow1_left2_body li {
+            list-style: none;
+            color: #fff;
+        }
+
+        .titles {
+            margin-left: 10px;
+            width: 150px;
+
+
+        }
+
+        .mainRow1_left3 {
+            width: 496px;
+            height: 190px;
+            background-color: indianred;
+        }
+
+        .mainRow1_right {
+            width: 496px;
+            height: 662px;
+            /* background-color: green; */
+            display: flex;
+            justify-content: space-evenly;
+            flex-direction: column;
+        }
+
+        .mainRow1_right1 {
+            width: 496px;
+            height: 380px;
+            background: url('../../static/img/bigdata/bigdata_20.png') no-repeat center/496px 380px;
+        }
+
+        .mainRow1_right2 {
+            width: 496px;
+            height: 200px;
+            /* background-color: indianred; */
+            background: url('../../static/img/bigdata/bigdata_10.png') no-repeat center/496px 200px;
+        }
+
+        .mainRow1_right3 {
+            width: 1000px;
+            height: 180px;
+            /* background-color: indianred; */
+            display: flex;
+            justify-content: space-between;
+            flex-direction: row;
+        }
+
+        .mainRow1_right3s {
+            width: 245px;
+            height: 180px;
+            background-color: burlywood;
+        }
+
+        .mainRow1_right3s img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .mainRow2 {
+            width: 500px;
+            height: 980px;
+            /* background-color: darkcyan; */
+            display: flex;
+            justify-content: space-evenly;
+            flex-direction: column;
+        }
+
+        .mainRow2_top {
+            width: 500px;
+            height: 140px;
+            background-color: lemonchiffon;
+        }
+
+        .mainRow2_left_body {
+            width: 500px;
+            height: 100px;
+        }
+
+        .mainRow2_left_body li {
+            list-style: none;
+            float: left;
+            margin-left: 50px;
+        }
+
+        .mainRow2_mid {
+            width: 500px;
+            height: 320px;
+            /* background-color: lemonchiffon; */
+            background: url('../../static/img/bigdata/bigdata_10.png') no-repeat center/500px 320px;
+        }
+
+        .mainRow2_mid_body {
+            width: 490px;
+            height: 260px;
+            /* background-color: oldlace; */
+
+        }
+
+        .mainRow2_bottom {
+            width: 500px;
+            height: 590px;
+            background-color: lemonchiffon;
+            background: url('../../static/img/bigdata/bigdata_03.png') no-repeat center/500px 590px;
+        }
+
+        .mainRow2_left_bodys {
+            width: 450px;
+            height: 330px;
+            /* background-color: maroon; */
+        }
+
+        .mainRow2_left_bodys li {
+            list-style: none;
+            height: 40px;
+            line-height: 40px;
+            background: linear-gradient(to right, rgb(0, 174, 255, 0.7), rgb(0, 174, 255, 0.4), rgb(0, 174, 255, 0));
+            margin: 23px;
+            margin-left: 0px;
+            border-radius: 15px;
+            color: #fff;
+            margin-top: 30px;
+        }
+
+        /* .temp {
+            text-indent: 2em;
+
+        } */
+
+        .yellow {
+            color: #e5a035;
+            font-size: 15px;
+            line-height: 35px;
+        }
+
+        .titless {
+            width: 250px;
+            margin-left: 6px;
+
+        }
+
+        .mainRow3 {
+            width: 1500px;
+            height: 980px;
+            /* background-color: darkcyan; */
+            display: flex;
+            justify-content: space-between;
+            flex-direction: row;
+        }
+
+        .mainRow3_lefts {
+            width: 1000px;
+            height: 980px;
+            /* background-color: darkcyan; */
+        }
+
+        .mainRow3_title {
+            width: 1000px;
+            height: 100px;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            /* background-color: rgb(124, 30, 30); */
+            text-align: center;
+            line-height: 100px;
+            font-size: 40px;
+            color: #03dff5;
+        }
+
+        .mainRow3_img1 {
+            width: 1000px;
+            height: 400px;
+            /* background-color: lightcyan; */
+            text-align: center;
+        }
+
+        .mainRow3_img1 img {
+            height: 475px;
+        }
+
+        .mainRow3_bottom {
+            width: 1000px;
+            height: 480px;
+            /* background-color: lightgreen; */
+            display: flex;
+            justify-content: space-evenly;
+            flex-direction: column;
+        }
+
+        .mainRow3_echarts_title {
+            width: 1000px;
+            height: 50px;
+            /* background-color: olive; */
+            padding-left: 30px;
+            line-height: 50px;
+
+        }
+
+        .mainRow3_echarts_title2 {
+            width: 230px;
+            height: 50px;
+            /* display: inline-block; */
+            position: absolute;
+            color: #fff;
+            margin-left: 750px;
+            margin-top: -50px;
+        }
+
+        .mainRow3_echarts_title_body {
+            width: 1000px;
+            height: 180px;
+            /* background-color: olivedrab; */
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        .mainRow3_bottom_echart {
+            width: 332px;
+            height: 180px;
+            /* background-color:orangered; */
+        }
+
+        .mainRow3_img2 {
+            width: 1000px;
+            height: 140px;
+            display: flex;
+            justify-content: space-between;
+            flex-direction: row;
+        }
+
+        .mainRow3_img2s {
+            width: 245px;
+            height: 140px;
+            background-color: burlywood;
+        }
+
+        .mainRow3_img2s img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .mainRow3_echarts {
+            width: 1000px;
+            height: 270px;
+            /* background-color: lightpink; */
+            background: url('../../static/img/bigdata/bigdata_38.png') no-repeat center/1000px 270px;
+        }
+
+        .mainRow3_righs {
+            width: 495px;
+            height: 980px;
+            /* background-color: lightpink; */
+            background: url('../../static/img/bigdata/bigdata_06.png') no-repeat center/495px 940px;
+        }
+
+        .mainRow3_righs_body {
+            width: 450px;
+            height: 880px;
+            /* background-color: lightpink; */
+            padding-left: 33px;
+            display: flex;
+            justify-content: start;
+            flex-direction: column;
+        }
+
+        .mainRow3_righs p {
+            list-style: none;
+            height: 35px;
+            line-height: 35px;
+            background: linear-gradient(to right, rgb(0, 174, 255, 0.7), rgb(0, 174, 255, 0.4), rgb(0, 174, 255, 0));
+            margin: 12px;
+            margin-left: 0px;
+            border-radius: 15px;
+            color: #fff;
+            margin: 0;
+            text-indent: 1em;
+            margin-top: 10px;
+        }
+
+        .mainRow3_righs_body1 {
+            width: 450px;
+            height: 185px;
+            /* background-color: blueviolet; */
+        }
+
+        .titles1 {
+            margin-top: 26px;
+            margin-left: 26px;
+        }
+
+        .mainRow4 {
+            width: 500px;
+            height: 980px;
+            /* background-color: darkcyan; */
+            display: flex;
+            justify-content: space-evenly;
+            flex-direction: column;
+        }
+
+        .mainRow4_top {
+            width: 500px;
+            height: 280px;
+            /* background-color: lightsalmon; */
+            background: url('../../static/img/bigdata/bigdata_10.png') no-repeat center/500px 280px;
+        }
+
+        .mainRow4_tops {
+            width: 500px;
+            height: 220px;
+            /* background-color: mediumblue; */
+            display: flex;
+            flex-direction: row;
+            /* text-align: center; */
+            justify-content: center;
+        }
+
+        .mainRow4_top1 {
+            width: 216px;
+            height: 200px;
+            /* background-color: mediumaquamarine; */
+            display: inline-block;
+            padding: 0;
+            font-size: 15px;
+        }
+
+        .mainRow4_top1 li {
+            list-style: none;
+            color: #fff;
+            height: 30px;
+        }
+
+        .titles2 {
+            margin-left: 28px;
+        }
+
+        .mainRow4_bottom {
+            width: 500px;
+            height: 636px;
+            background-color: lightsalmon;
+            background: url('../../static/img/bigdata/bigdata_06.png') no-repeat center/500px 636px;
+
+        }
+
+        .mainRow4_bottom_body {
+            width: 500px;
+            height: 550px;
+            /* background-color: mediumorchid; */
+            margin-top: 10px;
+        }
+
+        .mainRow4_bottom_ul {
+            margin: 0;
+            text-align: initial;
+            position: relative;
+        }
+
+        .mainRow4_bottom_body li {
+            width: 215px;
+            /* background-color: mediumpurple; */
+            margin: 10px;
+            list-style: none;
+            margin-left: 0;
+            color: #fff;
+            display: inline-block;
+            margin: 0;
+            padding: 0;
+            /* text-align: center; */
+        }
+
+        .mainRow4_bottom_body p {
+            list-style: none;
+            height: 35px;
+            line-height: 35px;
+            background: linear-gradient(to right, rgb(0, 174, 255, 0.7), rgb(0, 174, 255, 0.4), rgb(0, 174, 255, 0));
+            margin: 12px;
+            margin-left: 0px;
+            border-radius: 15px;
+            color: #fff;
+            margin: 0;
+            text-indent: 1em;
+            margin-top: 3px;
+        }
+
+
+        .mainRow5 {
+            width: 1000px;
+            height: 980px;
+            /* background-color: darkcyan; */
+        }
+
+        .mainRow5_title {
+            width: 1000px;
+            height: 100px;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            /* background-color: rgb(124, 30, 30); */
+            text-align: center;
+            line-height: 100px;
+            font-size: 40px;
+            color: #03dff5;
+        }
+
+        .mainRow5_img1 {
+            width: 1000px;
+            height: 400px;
+            text-align: center;
+        }
+
+        .mainRow5_img1 img {
+            height: 475px;
+        }
+
+        .mainRow5_bottom {
+            width: 1000px;
+            height: 480px;
+            /* background-color: lightgreen; */
+            display: flex;
+            justify-content: space-evenly;
+            flex-direction: column;
+        }
+
+        .mainRow5_bottom_title {
+            width: 300px;
+            height: 260px;
+            /* background-color: blueviolet; */
+            padding-left: 35px;
+        }
+
+        .mainRow5_bottom_title p {
+            color: #0296dc;
+            font-size: 20px;
+            padding-left: 50px;
+            margin: 0;
+            margin-top: 32px;
+
+        }
+
+        .mainRow5_bottom_img {
+            width: 280px;
+            height: 190px;
+            /* background-color: cadetblue; */
+            margin-top: 10px;
+        }
+
+        .mainRow5_bottom_img img {
+            width: 100%;
+            height: 95%;
+        }
+
+        .mainRow5_echarts1 {
+            width: 700px;
+            height: 270px;
+            /* background-color: rgb(36, 27, 44); */
+        }
+
+        .mainRow5_img2 {
+            width: 1000px;
+            height: 140px;
+            display: flex;
+            justify-content: space-between;
+            flex-direction: row;
+        }
+
+        .mainRow5_img2s {
+            width: 245px;
+            height: 140px;
+            background-color: burlywood;
+        }
+
+        .mainRow5_img2s img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .mainRow5_echarts {
+            width: 1000px;
+            height: 270px;
+            /* background-color: lightpink; */
+            background: url('../../static/img/bigdata/bigdata_38.png') no-repeat center/1000px 270px;
+        }
+
+        .mainRow5_echarts_div {
+            width: 1000px;
+            height: 270px;
+            /* background-color: brown; */
+            display: flex;
+            justify-content: space-between;
+            flex-direction: row;
+        }
+
+        .mainRow6 {
+            width: 500px;
+            height: 980px;
+            /* background-color: darkcyan; */
+            display: flex;
+            justify-content: space-evenly;
+            flex-direction: column;
+        }
+
+        /* .mainRow6_top {
+            width: 500px;
+            height: 80px;
+            background-color: rgb(43, 48, 48);
+        } */
+
+        .mainRow6_top2 {
+            width: 500px;
+            height: 230px;
+            /* background-color: rgb(43, 48, 48); */
+            background: url('../../static/img/bigdata/bigdata_10.png') no-repeat center/500px 230px;
+        }
+
+        .mainRow6_top_body {
+            width: 460px;
+            height: 120px;
+            /* background-color:mediumseagreen; */
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        /* .mainRow6_top_body p{
+            height: 45px;
+            line-height: 45px;
+        } */
+        .mainRow6_top_body li {
+            list-style: none;
+        }
+
+        .mainRow6_top_body p {
+            width: 150px;
+            height: 45px;
+            line-height: 45px;
+            background-color: rgba(8, 100, 146, 0.2);
+            ;
+            color: #fff;
+            float: left;
+            margin: 5px;
+            margin-left: 40px;
+        }
+
+        .mainRow6_mid {
+            width: 500px;
+            height: 310px;
+            background-color: rgb(43, 48, 48);
+            background: url('../../static/img/bigdata/bigdata_10.png') no-repeat center/500px 310px;
+        }
+
+        .mainRow6_mid_body {
+            width: 490px;
+            height: 240px;
+            /* background-color: blueviolet; */
+        }
+
+        .mainRow6_bottom {
+            width: 500px;
+            height: 340px;
+            background-color: rgb(43, 48, 48);
+            background: url('../../static/img/bigdata/bigdata_10.png') no-repeat center/500px 340px;
+        }
+
+        .mainRow6_titlep {
+            width: 490px;
+            height: 230px;
+            /* background-color: darkgrey; */
+        }
+
+        .li_Title {
+            width: 459px;
+            height: 35px;
+            line-height: 35px;
+            /* background-color: rgb(94, 89, 20); */
+            color: #fff;
+            font-size: 15px;
+            margin: 0;
+            margin-top: 20px;
+            margin-left: 20px;
+            margin-bottom: 14px;
+            padding-left: 35px;
+            box-sizing: border-box;
+        }
+
+        .li_Title p {
+            width: 390px;
+            height: 35px;
+            margin: 0;
+            background: darkcyan;
+            border-radius: 7px;
+        }
+
+        .li_Title span {
+            width: 130px;
+            list-style: none;
+            float: left;
+            text-align: center;
+        }
+
+        .li_Body span {
+            display: inline-block;
+            width: 130px;
+            height: 30px;
+            text-align: center;
+            /* background-color: darkgreen; */
+            line-height: 30px;
+            font-size: 12px;
+
+        }
+
+        .happenSpan::before {
+            padding: 0px 7px 3px;
+            content: '!';
+            font-size: 12px;
+            background-color: red;
+            border-radius: 50%;
+            color: #fff;
+            /* line-height: 70%; */
+            text-align: center;
+            margin: 5px 5px;
+
+        }
+
+        .yellows {
+            color: #e5a035;
+            font-size: 12px;
+            line-height: 30px;
+        }
+
+        .li_Body {
+            width: 400px;
+            height: 175px;
+            /* background-color: blueviolet; */
+            margin: 0;
+            margin-left: 50px;
+            padding: 0;
+            color: #52586a;
+        }
+
+        .li_Body li {
+            list-style: none;
+            /* width: 400px; */
+            height: 38px;
+            float: left;
+            text-align: center;
+            /* background-color: blue; */
+        }
+
+        .li_Body p {
+            margin: 0;
+        }
+
+        .title_span {
+            display: inline-block;
+            width: 120px;
+            text-align: right;
+        }
+
+        .title_span1 {
+            display: inline-block;
+            width: 60px;
+            text-align: right;
+            /* background-color: darkgreen; */
+        }
+
+        .title_span2 {
+            display: inline-block;
+            width: 118px;
+            text-align: right;
+            /* background-color: darkgreen; */
+        }
+
+        .yellowss {
+            color: #e5a035;
+            display: inline-block;
+            width: 286px;
+            text-align: right;
+        }
+
+        .toggle-button-wrapper {
+            position: absolute;
+            right: 200px;
+            top: 5px;
+
+        }
+
+        .btn_span_title {
+            color: bisque;
+            line-height: 25px;
+            display: inline-block;
+            height: 25px;
+            width: 35px;
+            /* background-color: black; */
+            position: relative;
+            bottom: 7px;
+        }
+
+        .checkBtns {
+            right: 66px;
+            top: 5px;
+        }
+
+
+        #toggle-button1 {
+            display: none;
+        }
+
+        .button-label1 {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 25px;
+            background-color: #ccc;
+            box-shadow: #ccc 0px 0px 0px 2px;
+            border-radius: 30px;
+            overflow: hidden;
+        }
+
+        .circle1 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background-color: #fff;
+        }
+
+        .button-label1 .text {
+            line-height: 30px;
+            font-size: 18px;
+            text-shadow: 0 0 2px #ddd;
+        }
+
+        /* .on { color: #fff; display: none; text-indent: 10px;}
+        .off { color: #fff; display: inline-block; text-indent: 34px;} */
+        .button-label1 .circle1 {
+            left: 0;
+            transition: all 0.3s;
+        }
+
+        #toggle-button1:checked+label.button-label1 .circle1 {
+            left: 35px;
+        }
+
+        #toggle-button1:checked+label.button-label1 .on {
+            display: inline-block;
+        }
+
+        #toggle-button1:checked+label.button-label1 .off {
+            display: none;
+        }
+
+        #toggle-button1:checked+label.button-label1 {
+            background-color: #51ccee;
+        }
+
+        #toggle-button {
+            display: none;
+        }
+
+        .button-label {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 25px;
+            background-color: #ccc;
+            box-shadow: #ccc 0px 0px 0px 2px;
+            border-radius: 30px;
+            overflow: hidden;
+        }
+
+        .circle {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background-color: #fff;
+        }
+
+        .button-label .text {
+            line-height: 30px;
+            font-size: 18px;
+            text-shadow: 0 0 2px #ddd;
+        }
+
+        /* .on { color: #fff; display: none; text-indent: 10px;}
+        .off { color: #fff; display: inline-block; text-indent: 34px;} */
+        .button-label .circle {
+            left: 0;
+            transition: all 0.3s;
+        }
+
+        #toggle-button:checked+label.button-label .circle {
+            left: 35px;
+        }
+
+        #toggle-button:checked+label.button-label .on {
+            display: inline-block;
+        }
+
+        #toggle-button:checked+label.button-label .off {
+            display: none;
+        }
+
+        #toggle-button:checked+label.button-label {
+            background-color: #51ccee;
+        }
+
+        #toggle-button2 {
+            display: none;
+        }
+
+        .button-label2 {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 25px;
+            background-color: #ccc;
+            box-shadow: #ccc 0px 0px 0px 2px;
+            border-radius: 30px;
+            overflow: hidden;
+        }
+
+        .circle2 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background-color: #fff;
+        }
+
+        .button-label2 .text {
+            line-height: 30px;
+            font-size: 18px;
+            text-shadow: 0 0 2px #ddd;
+        }
+
+        /* .on { color: #fff; display: none; text-indent: 10px;}
+        .off { color: #fff; display: inline-block; text-indent: 34px;} */
+        .button-label2 .circle2 {
+            left: 0;
+            transition: all 0.3s;
+        }
+
+        #toggle-button2:checked+label.button-label2 .circle2 {
+            left: 35px;
+        }
+
+        #toggle-button2:checked+label.button-label2 .on {
+            display: inline-block;
+        }
+
+        #toggle-button2:checked+label.button-label2 .off {
+            display: none;
+        }
+
+        #toggle-button2:checked+label.button-label2 {
+            background-color: #51ccee;
+        }
+
+        #toggle-button3 {
+            display: none;
+        }
+
+        .button-label3 {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 25px;
+            background-color: #ccc;
+            box-shadow: #ccc 0px 0px 0px 2px;
+            border-radius: 30px;
+            overflow: hidden;
+        }
+
+        .circle3 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background-color: #fff;
+        }
+
+        .button-label3 .text {
+            line-height: 30px;
+            font-size: 18px;
+            text-shadow: 0 0 2px #ddd;
+        }
+
+        /* .on { color: #fff; display: none; text-indent: 10px;}
+        .off { color: #fff; display: inline-block; text-indent: 34px;} */
+        .button-label3 .circle3 {
+            left: 0;
+            transition: all 0.3s;
+        }
+
+        #toggle-button3:checked+label.button-label3 .circle3 {
+            left: 35px;
+        }
+
+        #toggle-button3:checked+label.button-label3 .on {
+            display: inline-block;
+        }
+
+        #toggle-button3:checked+label.button-label3 .off {
+            display: none;
+        }
+
+        #toggle-button3:checked+label.button-label3 {
+            background-color: #51ccee;
+        }
+
+        #toggle-button4 {
+            display: none;
+        }
+
+        .button-label4 {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 25px;
+            background-color: #ccc;
+            box-shadow: #ccc 0px 0px 0px 2px;
+            border-radius: 30px;
+            overflow: hidden;
+        }
+
+        .circle4 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background-color: #fff;
+        }
+
+        .button-label4 .text {
+            line-height: 30px;
+            font-size: 18px;
+            text-shadow: 0 0 2px #ddd;
+        }
+
+        /* .on { color: #fff; display: none; text-indent: 10px;}
+        .off { color: #fff; display: inline-block; text-indent: 34px;} */
+        .button-label4 .circle4 {
+            left: 0;
+            transition: all 0.3s;
+        }
+
+        #toggle-button4:checked+label.button-label4 .circle4 {
+            left: 35px;
+        }
+
+        #toggle-button4:checked+label.button-label4 .on {
+            display: inline-block;
+        }
+
+        #toggle-button4:checked+label.button-label4 .off {
+            display: none;
+        }
+
+        #toggle-button4:checked+label.button-label4 {
+            background-color: #51ccee;
+        }
+
+        #toggle-button5 {
+            display: none;
+        }
+
+        .button-label5 {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 25px;
+            background-color: #ccc;
+            box-shadow: #ccc 0px 0px 0px 2px;
+            border-radius: 30px;
+            overflow: hidden;
+        }
+
+        .circle5 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background-color: #fff;
+        }
+
+        .button-label5 .text {
+            line-height: 30px;
+            font-size: 18px;
+            text-shadow: 0 0 2px #ddd;
+        }
+
+        /* .on { color: #fff; display: none; text-indent: 10px;}
+        .off { color: #fff; display: inline-block; text-indent: 34px;} */
+        .button-label5 .circle5 {
+            left: 0;
+            transition: all 0.3s;
+        }
+
+        #toggle-button5:checked+label.button-label5 .circle5 {
+            left: 35px;
+        }
+
+        #toggle-button5:checked+label.button-label5 .on {
+            display: inline-block;
+        }
+
+        #toggle-button5:checked+label.button-label5 .off {
+            display: none;
+        }
+
+        #toggle-button5:checked+label.button-label5 {
+            background-color: #51ccee;
+        }
+
+        #toggle-button6 {
+            display: none;
+        }
+
+        .button-label6 {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 25px;
+            background-color: #ccc;
+            box-shadow: #ccc 0px 0px 0px 2px;
+            border-radius: 30px;
+            overflow: hidden;
+        }
+
+        .circle6 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background-color: #fff;
+        }
+
+        .button-label6 .text {
+            line-height: 30px;
+            font-size: 18px;
+            text-shadow: 0 0 2px #ddd;
+        }
+
+        /* .on { color: #fff; display: none; text-indent: 10px;}
+        .off { color: #fff; display: inline-block; text-indent: 34px;} */
+        .button-label6 .circle6 {
+            left: 0;
+            transition: all 0.3s;
+        }
+
+        #toggle-button6:checked+label.button-label6 .circle6 {
+            left: 35px;
+        }
+
+        #toggle-button6:checked+label.button-label6 .on {
+            display: inline-block;
+        }
+
+        #toggle-button6:checked+label.button-label6 .off {
+            display: none;
+        }
+
+        #toggle-button6:checked+label.button-label6 {
+            background-color: #51ccee;
+        }
+
+        #toggle-button7 {
+            display: none;
+        }
+
+        .button-label7 {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 25px;
+            background-color: #ccc;
+            box-shadow: #ccc 0px 0px 0px 2px;
+            border-radius: 30px;
+            overflow: hidden;
+        }
+
+        .circle7 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background-color: #fff;
+        }
+
+        .button-label7 .text {
+            line-height: 30px;
+            font-size: 18px;
+            text-shadow: 0 0 2px #ddd;
+        }
+
+        /* .on { color: #fff; display: none; text-indent: 10px;}
+        .off { color: #fff; display: inline-block; text-indent: 34px;} */
+        .button-label7 .circle7 {
+            left: 0;
+            transition: all 0.3s;
+        }
+
+        #toggle-button7:checked+label.button-label7 .circle7 {
+            left: 35px;
+        }
+
+        #toggle-button7:checked+label.button-label7 .on {
+            display: inline-block;
+        }
+
+        #toggle-button7:checked+label.button-label7 .off {
+            display: none;
+        }
+
+        #toggle-button7:checked+label.button-label7 {
+            background-color: #51ccee;}
+    </style>
+</head>
+
+<body>
+    <div class="content_bigdata">
+        <div class="header">
+            <div class="time_div" id="time_div"></div>
+            <span class="imgHeader1">
+
+            </span>
+            <span class="imgHeader2"></span>
+            <span class="imgHeader3"></span>
+        </div>
+        <div class="main">
+            <div class="mainRow1">
+                <div class="mainRow1_top">
+                    <div class="Topimg1">
+                        <img src="../../static/img/bigdata/bigdata_13.png" alt="">
+                    </div>
+                    智能销售板块
+                    <div class="Topimg2">
+                        <img src="../../static/img/bigdata/bigdata_15.png" alt="">
+                    </div>
+                </div>
+                <div class="mainRow1_bottoms">
+                    <div class="mainRow1_bottom">
+                        <div class="mainRow1_left">
+                            <div class="mainRow1_left1">
+                                <div class="mainRow_left_title">
+                                    <span class="mainRow_left_titles">智能柜品类销售</span>
+                                    <img src="../../static/img/bigdata/bigdata_43.png" alt="">
+                                </div>
+                                <ul class="mainRow1_left1_body">
+                                    <li>
+                                        <p class="li_text1">320</p>
+                                        <p>蔬菜（斤）</p>
+                                    </li>
+                                    <li>
+                                        <p class="li_text1">8</p>
+                                        <p>水果（斤）</p>
+                                    </li>
+                                    <li>
+                                        <p class="li_text1">9826</p>
+                                        <p>饮料（斤）</p>
+                                    </li>
+                                    <li>
+                                        <p class="li_text1">85</p>
+                                        <p>副食品（份）</p>
+                                    </li>
+                                    <li>
+                                        <p class="li_text1">763</p>
+                                        <p>冷冻品（份）</p>
+                                    </li>
+                                    <li>
+                                        <p class="li_text1">482</p>
+                                        <p>常温品（份）</p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="mainRow1_left2">
+                                <div class="mainRow_left_title">
+                                    <span class="mainRow_left_titles  titles">今日销售</span>
+                                    <img src="../../static/img/bigdata/bigdata_43.png" alt="">
+                                </div>
+                                <ul class="mainRow1_left2_body">
+                                    <li>
+                                        <p style="font-size:35px;color:#ffc300;margin:0">61367.6</p>
+                                        <p>今日销售金额（元）</p>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                        <div class="mainRow1_right">
+                            <div class="mainRow1_right1">
+                                <div class="mainRow_left_title">
+                                    <span class="mainRow_left_titles">自制品品类销售</span>
+                                    <img src="../../static/img/bigdata/bigdata_43.png" alt="">
+                                </div>
+                                <ul class="mainRow1_left1_body">
+                                    <li>
+                                        <p class="li_text1">9</p>
+                                        <p>尚云厨鸡汤（盒）</p>
+                                    </li>
+                                    <li>
+                                        <p class="li_text1">83</p>
+                                        <p>洪厨小卤.常温（份）</p>
+                                    </li>
+                                    <li>
+                                        <p class="li_text1">615</p>
+                                        <p>洪厨小卤.冷冻（份）</p>
+                                    </li>
+                                    <li>
+                                        <p class="li_text1">320</p>
+                                        <p>云厨生鲜（斤）</p>
+                                    </li>
+                                    <li>
+                                        <p class="li_text1">320</p>
+                                        <p>洪匠土豆（份）</p>
+                                    </li>
+                                    <li>
+                                        <p class="li_text1">320</p>
+                                        <p>尚云厨（冷冻）</p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="mainRow1_right2">
+                                <div class="mainRow_left_title">
+                                    <span class="mainRow_left_titles titles">今日配货</span>
+                                    <img src="../../static/img/bigdata/bigdata_43.png" alt="">
+                                </div>
+                                <ul class="mainRow1_left2_body">
+                                    <li>
+                                        <p style="font-size:35px;color:#ffc300;margin:0">9432</p>
+                                        <p>今日销售金额（元）</p>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="mainRow1_right3">
+                        <div class="mainRow1_right3s">
+                            <img src="../../static/img/bigdata/bigdata_1.png" alt="">
+                        </div>
+                        <div class="mainRow1_right3s">
+                            <img src="../../static/img/bigdata/bigdata_2.png" alt="">
+                        </div>
+                        <div class="mainRow1_right3s">
+                            <img src="../../static/img/bigdata/bigdata_3.png" alt="">
+                        </div>
+                        <div class="mainRow1_right3s">
+                            <img src="../../static/img/bigdata/bigdata_4.png" alt="">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="mainRow2">
+                <!-- <div class="mainRow2_top">
+                    <ul class="mainRow2_left_body">
+                        <li>
+                            <p style="font-size:35px;color:#ffc300;margin:0">9432</p>
+                            <p>今日销售金额（元）</p>
+                        </li>
+                        <li>
+                            <p style="font-size:35px;color:#ffc300;margin:0">9432</p>
+                            <p>今日销售金额（元）</p>
+                        </li>
+                    </ul>
+                </div> -->
+                <div class="mainRow2_mid">
+                    <div class="mainRow_left_title">
+                        <span class="mainRow_left_titles titless">智能污水处理</span>
+                        <img src="../../static/img/bigdata/bigdata_43.png" alt="">
+                    </div>
+                    <div class="mainRow2_mid_body" id="mainRow2_mid_body"></div>
+                </div>
+                <div class="mainRow2_bottom">
+                    <div class="mainRow_left_title">
+                        <span class="mainRow_left_titles titless">中央厨房温度湿度</span>
+                        <img src="../../static/img/bigdata/bigdata_43.png" alt="">
+                    </div>
+                    <ul class="mainRow2_left_bodys">
+                        <li>
+                            <p> <span class="title_span">1号冷冻库：</span> <span class="title_span1">温度：</span> <span
+                                    class="yellow">32℃</span><span class="title_span1"> 湿度：</span><span
+                                    class="yellow">332%RH</span></p>
+
+                        </li>
+                        <li>
+                            <p><span class="title_span">2号冷冻库：</span> <span class="title_span1">温度：</span><span
+                                    class="yellow">32℃</span> <span class="title_span1"> 湿度：</span><span
+                                    class="yellow">332%RH</span></p>
+                        </li>
+                        <li>
+                            <p><span class="title_span">冷却间：</span> <span class="title_span1">温度：</span><span
+                                    class="yellow">32℃</span><span class="title_span1"> 湿度：</span><span
+                                    class="yellow">332%RH</span></p>
+                        </li>
+                        <li>
+                            <p><span class="title_span">摆盘间：</span> <span class="title_span1">温度：</span><span
+                                    class="yellow">32℃</span><span class="title_span1"> 湿度：</span><span
+                                    class="yellow">332%RH</span></p>
+                        </li>
+                        <li>
+                            <p><span class="title_span">滚揉间：</span> <span class="title_span1">温度：</span><span
+                                    class="yellow">32℃</span><span class="title_span1"> 湿度：</span><span
+                                    class="yellow">332%RH</span></p>
+                        </li>
+                        <li>
+                            <p><span class="title_span">腌制间：</span> <span class="title_span1">温度：</span><span
+                                    class="yellow">32℃</span><span class="title_span1"> 湿度：</span><span
+                                    class="yellow">332%RH</span></p>
+                        </li>
+                        <li>
+                            <p><span class="title_span">内包装间：</span> <span class="title_span1">温度：</span><span
+                                    class="yellow">32℃</span><span class="title_span1"> 湿度：</span><span
+                                    class="yellow">332%RH</span></p>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="mainRow3">
+                <div class="mainRow3_lefts">
+                    <div class="mainRow3_title">
+                        <div class="Topimg1">
+                            <img src="../../static/img/bigdata/bigdata_13.png" alt="">
+                        </div>
+                        数字工厂板块
+                        <div class="Topimg2">
+                            <img src="../../static/img/bigdata/bigdata_15.png" alt="">
+                        </div>
+                    </div>
+                    <div class="mainRow3_img1">
+                        <img src="../../static/img/bigdata/bigdatabg_06.png" alt="">
+                    </div>
+                    <div class="mainRow3_bottom">
+                        <div class="mainRow3_img2">
+                            <div class="mainRow3_img2s">
+                                <img src="../../static/img/bigdata/bigdata_1.png" alt="">
+                            </div>
+                            <div class="mainRow3_img2s">
+                                <img src="../../static/img/bigdata/bigdata_2.png" alt="">
+                            </div>
+                            <div class="mainRow3_img2s">
+                                <img src="../../static/img/bigdata/bigdata_3.png" alt="">
+                            </div>
+                            <div class="mainRow3_img2s">
+                                <img src="../../static/img/bigdata/bigdata_4.png" alt="">
+                            </div>
+                        </div>
+                        <div class="mainRow3_echarts">
+                            <div class="mainRow3_echarts_title">
+                                <p style="color: #00a8f6;font-size: 25px;">设备状态</p>
+                            </div>
+                            <div class="mainRow3_echarts_title_body">
+                                <div class="mainRow3_echarts_title2">
+                                    <p style="display: inline-block;">设备故障 <span style="color:rgb(47, 47, 233);">
+                                            A3</span></p>
+                                    <p style="display: inline-block;margin-left: 20px;">模具故障 <span
+                                            style="color:rgb(47, 47, 233);"> A3</span></p>
+                                </div>
+                                <div class="mainRow3_bottom_echart" id="mainRow3_bottom_echart1"></div>
+                                <div class="mainRow3_bottom_echart" id="mainRow3_bottom_echart2"></div>
+                                <div class="mainRow3_bottom_echart" id="mainRow3_bottom_echart3"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mainRow3_righs">
+                    <div class="mainRow_left_title titles1">
+                        <span class="mainRow_left_titles">园区能源计量</span>
+                        <img src="../../static/img/bigdata/bigdata_43.png" alt="">
+                    </div>
+                    <div class="mainRow3_righs_body">
+                        <p> <span style="color: #00aeff;">总用电量</span> <span class="yellowss">1,273,625</span> Kwh</p>
+                        <div class="mainRow3_righs_body1" id="mainRow3_righs_body1">
+                        </div>
+                        <p> <span style="color: #20d180;">工业板块电量</span><span class="yellowss">1,273,625</span> Kwh</p>
+                        <div class="mainRow3_righs_body1" id="mainRow3_righs_body2">
+
+                        </div>
+                        <p> <span style="color: #ffb137;">农业板块电量</span><span class="yellowss">1,273,625</span> Kwh</p>
+                        <div class="mainRow3_righs_body1" id="mainRow3_righs_body3">
+
+                        </div>
+                        <p> <span style="color: #ff4949;"> 其余板块电量</span> <span class="yellowss">1,273,625</span> Kwh</p>
+                        <div class="mainRow3_righs_body1" id="mainRow3_righs_body4">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mainRow4">
+                <div class="mainRow4_top">
+                    <div class="mainRow_left_title titles2">
+                        <span class="mainRow_left_titles">农业气象站</span>
+                        <img src="../../static/img/bigdata/bigdata_43.png" alt="">
+                    </div>
+                    <div class="mainRow4_tops">
+                        <!-- 左侧 -->
+                        <ul class="mainRow4_top1">
+                            <li> <span class="title_span">光照度：</span> <span class="yellow">332lux</span></li>
+                            <li> <span class="title_span">气压：</span> <span class="yellow">72pa</span></li>
+                            <li> <span class="title_span"> 风速：</span> <span class="yellow">2m/s</span></li>
+                            <li> <span class="title_span"> 蒸发量：</span> <span class="yellow">3mm</span></li>
+                            <li> <span class="title_span">二氧化碳：</span> <span class="yellow">400PPM</span></li>
+                            <li> <span class="title_span">负氧离子：</span> <span class="yellow">73/cm3</span></li>
+                        </ul>
+                        <!-- 右侧 -->
+                        <ul class="mainRow4_top1">
+                            <li> <span class="title_span"> 湿度：</span> <span class="yellow">90%RH</span></li>
+                            <li> <span class="title_span">风向：</span> <span class="yellow">西南风</span></li>
+                            <li> <span class="title_span">降雨量：</span> <span class="yellow">141mm</span></li>
+                            <li><span class="title_span">紫外线：</span> <span class="yellow">25mW/m2</span></li>
+                            <li><span class="title_span">辐射：</span> <span class="yellow">800:-3EN</span></li>
+                            <li><span class="title_span">氧气浓度：</span> <span class="yellow">19.5%</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mainRow4_bottom">
+                    <div class="mainRow_left_title titles2">
+                        <span class="mainRow_left_titles">实时环境检测</span>
+                        <img src="../../static/img/bigdata/bigdata_43.png" alt="">
+                    </div>
+                    <div class="mainRow4_bottom_body">
+                        <ul class="mainRow4_bottom_ul">
+                            <div class="toggle-button-wrapper">
+                                <span class="btn_span_title">风机</span>
+                                <input type="checkbox" id="toggle-button" name="switch">
+                                <label for="toggle-button" class="button-label">
+                                    <span class="circle"></span>
+                                    <!-- <span class="text on">ON</span>
+                                    <span class="text off">OFF</span> -->
+                                </label>
+                            </div>
+                            <div class="toggle-button-wrapper checkBtns">
+                                <span class="btn_span_title">卷帘</span>
+                                <input type="checkbox" id="toggle-button1" name="switch">
+                                <label for="toggle-button1" class="button-label1">
+                                    <span class="circle1"></span>
+                                    <!-- <span class="text on">ON</span>
+                                    <span class="text off">OFF</span> -->
+                                </label>
+                            </div>
+                            <p>1号雾培棚</p>
+                            <li><span class="title_span2">温度：</span><span class="yellow">37℃</span></li>
+                            <li><span class="title_span2">湿度：</span><span class="yellow">390%RH</span></li>
+                            <li><span class="title_span2">光照度：</span><span class="yellow">332lux</span></li>
+                            <li><span class="title_span2">二氧化碳：</span><span class="yellow">400PPM</span></li>
+                            <li><span class="title_span2">氧气浓度：</span><span class="yellow">50%</span></li>
+                        </ul>
+                        <ul class="mainRow4_bottom_ul">
+                            <div class="toggle-button-wrapper">
+                                <span class="btn_span_title">风机</span>
+                                <input type="checkbox" id="toggle-button2" name="switch">
+                                <label for="toggle-button2" class="button-label2">
+                                    <span class="circle2"></span>
+                                    <!-- <span class="text on">ON</span>
+                                    <span class="text off">OFF</span> -->
+                                </label>
+                            </div>
+                            <div class="toggle-button-wrapper checkBtns">
+                                <span class="btn_span_title">卷帘</span>
+                                <input type="checkbox" id="toggle-button3" name="switch">
+                                <label for="toggle-button3" class="button-label3">
+                                    <span class="circle3"></span>
+                                    <!-- <span class="text on">ON</span>
+                                    <span class="text off">OFF</span> -->
+                                </label>
+                            </div>
+                            <p>1号雾培棚</p>
+                            <li><span class="title_span2">温度：</span><span class="yellow">37℃</span></li>
+                            <li><span class="title_span2">湿度：</span><span class="yellow">390%RH</span></li>
+                            <li><span class="title_span2">光照度：</span><span class="yellow">332lux</span></li>
+                            <li><span class="title_span2">二氧化碳：</span><span class="yellow">400PPM</span></li>
+                            <li><span class="title_span2">氧气浓度：</span><span class="yellow">50%</span></li>
+                        </ul>
+                        <ul class="mainRow4_bottom_ul">
+                            <div class="toggle-button-wrapper">
+                                <span class="btn_span_title">风机</span>
+                                <input type="checkbox" id="toggle-button4" name="switch">
+                                <label for="toggle-button4" class="button-label4">
+                                    <span class="circle4"></span>
+                                    <!-- <span class="text on">ON</span>
+                                    <span class="text off">OFF</span> -->
+                                </label>
+                            </div>
+                            <div class="toggle-button-wrapper checkBtns">
+                                <span class="btn_span_title">卷帘</span>
+                                <input type="checkbox" id="toggle-button5" name="switch">
+                                <label for="toggle-button5" class="button-label5">
+                                    <span class="circle5"></span>
+                                    <!-- <span class="text on">ON</span>
+                                    <span class="text off">OFF</span> -->
+                                </label>
+                            </div>
+                            <p>1号雾培棚</p>
+                            <li><span class="title_span2">温度：</span><span class="yellow">37℃</span></li>
+                            <li><span class="title_span2">湿度：</span><span class="yellow">390%RH</span></li>
+                            <li><span class="title_span2">光照度：</span><span class="yellow">332lux</span></li>
+                            <li><span class="title_span2">二氧化碳：</span><span class="yellow">400PPM</span></li>
+                            <li><span class="title_span2">氧气浓度：</span><span class="yellow">50%</span></li>
+                        </ul>
+                        <ul class="mainRow4_bottom_ul">
+                            <div class="toggle-button-wrapper">
+                                <span class="btn_span_title">风机</span>
+                                <input type="checkbox" id="toggle-button6" name="switch">
+                                <label for="toggle-button6" class="button-label6">
+                                    <span class="circle6"></span>
+                                    <!-- <span class="text on">ON</span>
+                                    <span class="text off">OFF</span> -->
+                                </label>
+                            </div>
+                            <div class="toggle-button-wrapper checkBtns">
+                                <span class="btn_span_title">卷帘</span>
+                                <input type="checkbox" id="toggle-button7" name="switch">
+                                <label for="toggle-button7" class="button-label7">
+                                    <span class="circle7"></span>
+                                    <!-- <span class="text on">ON</span>
+                                    <span class="text off">OFF</span> -->
+                                </label>
+                            </div>
+                            <p>1号雾培棚</p>
+                            <li><span class="title_span2">温度：</span><span class="yellow">37℃</span></li>
+                            <li><span class="title_span2">湿度：</span><span class="yellow">390%RH</span></li>
+                            <li><span class="title_span2">光照度：</span><span class="yellow">332lux</span></li>
+                            <li><span class="title_span2">二氧化碳：</span><span class="yellow">400PPM</span></li>
+                            <li><span class="title_span2">氧气浓度：</span><span class="yellow">50%</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="mainRow5">
+                <div class="mainRow5_title">
+                    <div class="Topimg1">
+                        <img src="../../static/img/bigdata/bigdata_13.png" alt="">
+                    </div>
+                    智慧农业板块
+                    <div class="Topimg2">
+                        <img src="../../static/img/bigdata/bigdata_15.png" alt="">
+                    </div>
+                </div>
+                <div class="mainRow5_img1">
+                    <img src="../../static/img/bigdata/bigdatabg_08.png" alt="">
+                </div>
+                <div class="mainRow5_bottom">
+                    <div class="mainRow5_img2">
+                        <div class="mainRow5_img2s">
+                            <img src="../../static/img/bigdata/bigdata_1.png" alt="">
+                        </div>
+                        <div class="mainRow5_img2s">
+                            <img src="../../static/img/bigdata/bigdata_2.png" alt="">
+                        </div>
+                        <div class="mainRow5_img2s">
+                            <img src="../../static/img/bigdata/bigdata_3.png" alt="">
+                        </div>
+                        <div class="mainRow5_img2s">
+                            <img src="../../static/img/bigdata/bigdata_4.png" alt="">
+                        </div>
+                    </div>
+                    <div class="mainRow5_echarts">
+                        <div class="mainRow5_echarts_div">
+                            <div class="mainRow5_bottom_title">
+                                <p>棚内设备控制参数</p>
+                                <div class="mainRow5_bottom_img">
+                                    <img src="../../static/img/bigdata/bigdata_5.png" alt="">
+                                </div>
+                            </div>
+                            <div class="mainRow5_echarts1" id="mainRow5_echarts1">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mainRow6">
+                <!-- <div class="mainRow6_top"></div> -->
+                <div class="mainRow6_top2">
+                    <div class="mainRow_left_title titles2">
+                        <span class="mainRow_left_titles">LED植物工厂</span>
+                        <img src="../../static/img/bigdata/bigdata_43.png" alt="">
+                    </div>
+                    <ul class="mainRow6_top_body">
+                        <li>
+                            <p>温度：332lux</p>
+                        </li>
+                        <li>
+                            <p>湿度：27%RH</p>
+                        </li>
+                        <li>
+                            <p>LED光谱：27p</p>
+                        </li>
+                        <li>
+                            <p style="background-color: #00aeff;">自动化施肥：西南风</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="mainRow6_mid">
+                    <div class="mainRow_left_title titles2">
+                        <span class="mainRow_left_titles">农产品生产周期</span>
+                        <img src="../../static/img/bigdata/bigdata_43.png" alt="">
+                    </div>
+                    <div class="mainRow6_mid_body" id="mainRow6_mid_body"></div>
+                </div>
+                <div class="mainRow6_bottom">
+                    <div class="mainRow_left_title titles2">
+                        <span class="mainRow_left_titles">农场数据预警</span>
+                        <img src="../../static/img/bigdata/bigdata_43.png" alt="">
+                    </div>
+                    <div class="mainRow6_titlep">
+                        <!-- <ul class="li_Title">
+                            <li>报警名称</li>
+                            <li>报警详情</li>
+                            <li>报警时间</li>
+                        </ul> -->
+                        <div class="li_Title">
+                            <p>
+                                <span>报警名称</span>
+                                <span>报警详情</span>
+                                <span>报警时间</span>
+                            </p>
+                        </div>
+                        <ul class="li_Body">
+                            <li>
+                                <p> <span class="happenSpan">触发器 </span> <span class="yellows">303 0>10</span>
+                                    <span>2020.20.20</span> </p>
+                            </li>
+                            <li>
+                                <p> <span class="happenSpan">触发器 </span> <span class="yellows">303 0>10</span>
+                                    <span>2020.20.20</span> </p>
+                            </li>
+                            <li>
+                                <p> <span class="happenSpan">触发器 </span> <span class="yellows">303 0>10</span>
+                                    <span>2020.20.20</span> </p>
+                            </li>
+                            <li>
+                                <p> <span class="happenSpan">触发器 </span> <span class="yellows">303 0>10</span>
+                                    <span>2020.20.20</span> </p>
+                            </li>
+                            <li>
+                                <p> <span class="happenSpan">触发器 </span> <span class="yellows">303 0>10</span>
+                                    <span>2020.20.20</span> </p>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // 测试ajax
+        var time_div = document.getElementById('time_div');
+        // var townId=1;
+        time_div.onclick = function () {
+            $.ajax({
+                url: 'http://gis.yaagdata.cn:8082/manageLandUse/getWaterByTown',
+                data: {
+                    townId: 0,
+                    type: 0,
+                    year: 2018
+                },
+                type: 'post',
+                async: false,
+                // 成功时调用
+                success: function (data) {
+                    console.log(data)
+                },
+                // 失败时调用
+                error: function (error) {
+                    alert(失败)
+                    console.log(error);
+                },
+                // 请求完成时调用
+                // complete:function() {
+                // }
+            })
+        }
+
+        // 获取当前时间
+        var time_div = document.getElementById('time_div');
+        var time = new Date(); // 程序计时的月从0开始取值后+1
+        var m = time.getMonth() + 1;
+        var t = time.getFullYear() + "-" + m + "-" +
+            time.getDate() + " " + time.getHours() + ":" +
+            time.getMinutes() + ":" + time.getSeconds();
+        time_div.innerHTML = t;
+        console.log(t)
+        console.log(time_div)
+
+        //智能污水处理
+        function getEcharts1() {
+        var myChart1 = echarts.init(document.getElementById('mainRow2_mid_body'));
+        let dashedPic =
+            'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAM8AAAAOBAMAAAB6G1V9AAAAD1BMVEX////Kysrk5OTj4+TJycoJ0iFPAAAAG0lEQVQ4y2MYBaNgGAMTQQVFOiABhlEwCugOAMqzCykGOeENAAAAAElFTkSuQmCC';
+        let color = ['#ffc300', '#00e473', '#009dff'];
+        let chartData = [{
+                name: "污水总处理量：1036吨",
+                value: 40083,
+                unit: '列'
+            },
+            {
+                name: "园区一季度污水总回水量：136吨",
+                value: 33974,
+                unit: '列'
+            },
+            {
+                name: "园区一季度污水总排水量：136吨",
+                value: 15400,
+                unit: '列'
+            },
+        ];
+        let arrName = [];
+        let arrValue = [];
+        let sum = 0;
+        let pieSeries = [],
+            lineYAxis = [];
+        chartData.forEach((v, i) => {
+            arrName.push(v.name);
+            arrValue.push(v.value);
+            sum = sum + v.value;
+        })
+        chartData.forEach((v, i) => {
+            pieSeries.push({
+                type: 'pie',
+                clockWise: false,
+                hoverAnimation: false,
+                radius: [72 - i * 25 + '%', 57 - i * 20 + '%'],
+                center: ["40%", "50%"],
+                label: {
+                    show: false
+                },
+                data: [{
+                    value: v.value,
+                    name: v.name
+                }, {
+                    value: sum - v.value,
+                    name: '',
+                    itemStyle: {
+                        color: "rgba(0,0,0,0)"
+                    }
+                }]
+            });
+            pieSeries.push({
+                name: '',
+                type: 'pie',
+                silent: false,
+                z: 1,
+                clockWise: false, //顺时加载
+                hoverAnimation: false, //鼠标移入变大
+                radius: [72 - i * 25 + '%', 57 - i * 20 + '%'],
+                center: ["40%", "50%"],
+                label: {
+                    show: false
+                },
+                data: [{
+                    value: 7.5,
+                    itemStyle: {
+                        color: "rgba(255,255,255,0.1)"
+                    }
+                }, {
+                    value: 2.5,
+                    name: '',
+                    itemStyle: {
+                        color: "rgba(0,0,0,0)"
+                    }
+                }]
+            });
+            v.percent = (v.value / sum * 100).toFixed(1) + "%";
+            lineYAxis.push({
+                value: i,
+                textStyle: {
+                    rich: {
+                        circle: {
+                            color: color[i],
+                            padding: [0, 5]
+                        }
+                    }
+                }
+            });
+        })
+        var option1 = {
+            // backgroundColor: '#fff',
+            color: color,
+            grid: {
+                top: '12%',
+                bottom: '54%',
+                left: "40%",
+                containLabel: false
+            },
+            yAxis: [{
+                type: 'category',
+                inverse: true,
+                axisLine: {
+                    show: false
+                },
+                axisTick: {
+                    show: false
+                },
+                axisLabel: {
+                    formatter: function (params) {
+                        let item = chartData[params];
+                        // console.log(item)
+                        return item.name
+                    },
+                    interval: 0,
+                    inside: true,
+                    textStyle: {
+                        color: function (value, index) {
+                            if (index == 0) {
+                                return '#ffc300'
+                            } else if (index == 1) {
+                                return '#00e473'
+                            } else {
+                                return '#009dff'
+                            }
+                        },
+                        fontSize: 14,
+                        // rich: {
+                        //     line: {
+                        //         width: 170,
+                        //         height: 10,
+                        //         backgroundColor: {
+                        //             image: dashedPic
+                        //         }
+                        //     },
+                        //     name: {
+                        //         color: ['#ffc300', '#00e473', '#009dff'],
+                        //         fontSize: 18,
+                        //     },
+                        // }
+                    },
+                    show: true
+                },
+                data: lineYAxis
+            }],
+            xAxis: [{
+                show: false
+            }],
+            series: pieSeries
+        };
+        myChart1.setOption(option1);
+        window.addEventListener("resize", function () {
+            myChart1.resize();
+        });
+    };getEcharts1();
+
+
+        function getEcharts2() {
+        // 设备状态左侧echarts图
+        var myChart2 = echarts.init(document.getElementById('mainRow3_bottom_echart1'));
+        var colors = ["#e00005", "#e6a900", "#00c05a"];
+        var fontColor = "#0089fa";
+        var data = [70, 2];
+        var fontSize = 13;
+        var percent = data[0] / (data[0] + data[1]) * 100;
+        var option2 = {
+            // backgroundColor:"#05233b",
+            series: [
+
+                {
+                    show: false,
+                    name: '最内层线',
+                    type: 'gauge',
+                    radius: '30%',
+                    center: ['50%', '50%'],
+                    startAngle: 0,
+                    endAngle: 359,
+                    axisLine: {
+                        show: false,
+                        lineStyle: {
+                            opacity: 0,
+                        }
+                    },
+                    splitLine: {
+                        show: false,
+                        lineStyle: {
+                            opacity: 0
+                        }
+                    },
+                    axisLabel: {
+                        show: false
+                    },
+                    axisTick: {
+                        length: 2,
+                        lineStyle: {
+                            color: fontColor,
+                            width: 2,
+                            type: 'solid'
+                        }
+                    },
+                    detail: {
+                        show: false,
+                        offsetCenter: [80, '258%'],
+                        fontSize: 15,
+                        color: '#fff'
+                    },
+                    data: [{
+                        value: data[1],
+                        name: "离线："
+                    }],
+                    title: {
+                        show: false,
+                        offsetCenter: [50, '258%'],
+                        textStyle: {
+                            color: fontColor,
+                        }
+                    },
+                    pointer: {
+                        show: false
+                    }
+                },
+                {
+                    show: false,
+                    name: '内层数据刻度',
+                    type: 'gauge',
+                    radius: '100%',
+                    min: 0,
+                    max: 100,
+                    center: ['50%', '50%'],
+                    axisLine: {
+                        lineStyle: {
+                            width: 5,
+                            color: [
+                                [0.1, colors[0]],
+                                [0.3, new echarts.graphic.LinearGradient(
+                                    0, 1, 0, 0,
+                                    [{
+                                        offset: 0,
+                                        color: colors[0]
+                                    }, {
+                                        offset: 0.8,
+                                        color: colors[1]
+                                    }]
+                                )],
+                                [0.7, colors[1]],
+                                [0.9, new echarts.graphic.LinearGradient(
+                                    0, 1, 0, 0,
+                                    [{
+                                        offset: 0,
+                                        color: colors[2]
+                                    }, {
+                                        offset: 0.6,
+                                        color: colors[1]
+                                    }]
+                                )],
+                                [1, colors[2]]
+                            ],
+                        }
+                    },
+                    splitLine: {
+                        show: false,
+                        length: 15,
+                        lineStyle: {
+                            width: 2,
+                            color: '#ffffff'
+                        }
+                    },
+                    axisTick: {
+                        show: false,
+                        lineStyle: {
+                            width: 1,
+                            color: '#ffffff'
+                        }
+                    },
+                    axisLabel: {
+                        color: fontColor,
+                        distance: -15,
+                        fontSize: 10,
+                    },
+                    detail: {
+                        show: true,
+                        offsetCenter: ['0', '60%'],
+                        color: '#00e473',
+                        formatter: function (value) {
+                            // 			return value.toFixed(1)+"%";
+                            return "100%"
+                        },
+                        fontSize: 15
+                    },
+                    itemStyle: {
+                        normal: {
+                            color: 'rgb(0,191,255)'
+                        }
+                    },
+                    data: [{
+                        value: percent,
+                        name: "正在运行",
+                    }],
+                    silent: false,
+                    title: {
+                        offsetCenter: [0, '85%'], //设置在线率位置
+                        color: fontColor,
+                        fontSize: 15,
+                    }
+                },
+            ]
+        };
+  myChart2.setOption(option2);
+        window.addEventListener("resize", function () {
+            myChart2.resize();
+        });
+    };getEcharts2();
+
+        // 设备状态中间echarts图
+        function getEcharts3() {
+        var myChart3 = echarts.init(document.getElementById('mainRow3_bottom_echart2'));
+        var data = [78, 60, 60, 70, 69]
+        var titlename = ['正在运行', '待机', '设备故障', '模具故障'];
+        var valdata = ['8台', '2台', '3台', '5台']
+        var myColor = ['#20d180', '#00aeff', '#ffb137', '#ff4949'];
+        var option3 = {
+            // backgroundColor: '#0e2147',
+            grid: {
+                left: '1%',
+                top: '8%',
+                right: '0',
+                bottom: '1%',
+                containLabel: true
+            },
+            xAxis: {
+                show: false
+            },
+            yAxis: [{
+                min: 0,
+                max: 3,
+                splitNumber: 4,
+                show: true,
+                data: titlename,
+                inverse: true,
+                axisLine: {
+                    show: false
+                },
+                splitLine: {
+                    show: false
+                },
+                axisTick: {
+                    show: false
+                },
+                axisLabel: {
+                    textStyle: {
+                        color: function (value, index) {
+                            var num = myColor.length;
+                            return myColor[index % num]
+                        }
+                    },
+                    formatter: function (value, index) {
+                        return [
+                            '{title|' + value + '} '
+                        ].join('\n')
+                    },
+                    rich: {}
+                },
+
+            }, {
+                show: true,
+                inverse: true,
+                data: valdata,
+                axisLabel: {
+                    textStyle: {
+                        color: function (value, index) {
+                            var num = myColor.length;
+                            return myColor[index % num]
+                        }
+                    }
+                },
+                axisLine: {
+                    show: false
+                },
+                splitLine: {
+                    show: false
+                },
+                axisTick: {
+                    show: false
+                },
+
+            }],
+            series: [{
+                name: '条',
+                type: 'bar',
+                yAxisIndex: 0,
+                data: data,
+                barWidth: 8,
+                itemStyle: {
+                    normal: {
+                        barBorderRadius: 30,
+                        color: function (params) {
+                            var num = myColor.length;
+                            return myColor[params.dataIndex % num]
+                        },
+                    }
+                },
+                label: {
+                    normal: {
+                        show: false,
+                        position: 'inside',
+                        formatter: ''
+                    }
+                },
+            }]
+        };
+        myChart3.setOption(option3);
+    };getEcharts3();
+
+        // 设备状态右侧echarts图
+        function getEcharts4() {
+        var myChart4 = echarts.init(document.getElementById('mainRow3_bottom_echart3'));
+        var option4 = {
+            title: {
+                text: '设备停机率%                                                                                                                                                        设备可动率%',
+                bottom: 5,
+                left: 'center',
+                textStyle: {
+                    fontSize: 16,
+                    color: '#fff',
+                }
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow'
+                }
+            },
+            grid: {
+                left: '3%',
+                right: '14%',
+                bottom: '25%',
+                containLabel: true
+            },
+            xAxis: [{
+                type: 'category',
+                show: true,
+                axisTick: {
+                    show: true,
+                    color: '#707070'
+                },
+                axisLabel: {
+                    textStyle: {
+                        fontSize: 14,
+                        color: '#4D4D4D'
+                    }
+                },
+                axisLine: {
+                    lineStyle: {
+                        color: '#707070'
+                    }
+                },
+                data: ['', '', '', '', '', '', '', ''],
+            }],
+            yAxis: {
+                show: false,
+                type: 'value',
+                name: '',
+                nameTextStyle: {
+                    fontSize: 14,
+                    color: '#4D4D4D'
+                },
+                axisLabel: {
+                    textStyle: {
+                        fontSize: 12,
+                        color: '#4D4D4D'
+                    }
+                },
+                axisLine: {
+                    lineStyle: {
+                        color: '#707070'
+                    }
+                }
+            },
+            series: [{
+                name: '直接访问',
+                type: 'bar',
+                barWidth: '60%',
+                data: [{
+                        name: '低能见度1',
+                        value: '5',
+                        itemStyle: {
+                            color: '#ffc118'
+                        }
+                    },
+                    {
+                        name: '低能见度2',
+                        value: '15',
+                        itemStyle: {
+                            color: '#fe880d'
+                        }
+                    },
+                    {
+                        name: '低能见度3',
+                        value: '25',
+                        itemStyle: {
+                            color: '#fe4e12'
+                        }
+                    },
+                    {
+                        name: '低能见度4',
+                        value: '30',
+                        itemStyle: {
+                            color: '#fe312b'
+                        }
+                    },
+                    {
+                        name: '低能见度5',
+                        value: '35',
+                        itemStyle: {
+                            color: '#ff1649'
+                        }
+                    },
+                    {
+                        name: '低能见度6',
+                        value: '40',
+                        itemStyle: {
+                            color: '#fc066b'
+                        }
+
+                    },
+                    {
+                        name: '低能见度6',
+                        value: '50',
+                        itemStyle: {
+                            color: '#c714b8'
+                        }
+
+                    },
+                    {
+                        name: '低能见度6',
+                        value: '60',
+                        itemStyle: {
+                            color: '#a61def'
+                        }
+
+                    }
+                ]
+            }]
+        };
+        myChart4.setOption(option4);
+    };getEcharts4();
+
+        // 园区能源计量第1个echarts图
+        function getEcharts5() {
+        var myChart5 = echarts.init(document.getElementById('mainRow3_righs_body1'));
+        var fontColor = '#686e7a';
+        var option5 = {
+            grid: {
+                left: '5%',
+                right: '10%',
+                top: '10%',
+                bottom: '5%',
+                containLabel: true
+            },
+            tooltip: {
+                show: true,
+                trigger: 'item'
+            },
+            legend: {
+                show: false,
+                x: 'center',
+                y: '35',
+                icon: 'stack',
+                itemWidth: 10,
+                itemHeight: 10,
+                textStyle: {
+                    color: '#1bb4f6'
+                },
+                data: ['已采纳']
+            },
+            xAxis: [{
+                type: 'category',
+                boundaryGap: false,
+                axisLabel: {
+                    color: fontColor
+                },
+                axisLine: {
+                    show: true,
+                    lineStyle: {
+                        color: '#686e7a'
+                    }
+                },
+                axisTick: {
+                    show: false,
+                },
+                splitLine: {
+                    show: true,
+                    lineStyle: {
+                        color: '#686e7a'
+                    }
+                },
+                data: ['01/01', '02/01', '03/01', '04/01', '05/01', '06/01']
+            }],
+            yAxis: [{
+
+                    type: 'value',
+                    name: '',
+                    // min:0,
+                    // max:1087664,
+                    axisLabel: {
+                        formatter: '{value}',
+                        textStyle: {
+                            color: fontColor
+                        }
+                    },
+                    axisLine: {
+                        lineStyle: {
+                            color: '#686e7a'
+                        }
+                    },
+                    axisTick: {
+                        show: false,
+                    },
+                    splitLine: {
+                        show: false,
+                        lineStyle: {
+                            color: '#11366e'
+                        }
+                    },
+                    data: [257271, 256481, 365849, 548765, 589745, 658475]
+                },
+
+            ],
+            series: [{
+                    name: '已采纳',
+                    type: 'line',
+                    stack: '总量',
+                    symbol: 'circle',
+                    symbolSize: 8,
+                    itemStyle: {
+                        normal: {
+                            color: '#0092f6',
+                            lineStyle: {
+                                color: "#0092f6",
+                                width: 1
+                            },
+                            areaStyle: {
+                                //color: '#94C9EC'
+                                color: new echarts.graphic.LinearGradient(0, 1, 0, 0, [{
+                                    offset: 0,
+                                    color: 'rgba(7,44,90,0)'
+                                }, {
+                                    offset: 1,
+                                    color: 'rgba(0,146,246,0.6)'
+                                }]),
+                            }
+                        }
+                    },
+                    markPoint: {
+                        itemStyle: {
+                            normal: {
+                                color: 'red'
+                            }
+                        }
+                    },
+                    data: [257271, 256481, 365849, 548765, 589745, 658475]
+                },
+
+
+            ]
+        };
+        myChart5.setOption(option5);
+    };getEcharts5();
+
+        // 园区能源计量第2个echarts图
+        function getEcharts6() {
+        var myChart6 = echarts.init(document.getElementById('mainRow3_righs_body2'));
+        var fontColor = '#686e7a';
+        var option6 = {
+            // backgroundColor:'#11183c',
+            grid: {
+                left: '5%',
+                right: '10%',
+                top: '10%',
+                bottom: '5%',
+                containLabel: true
+            },
+            tooltip: {
+                show: true,
+                trigger: 'item'
+            },
+            legend: {
+                show: false,
+                x: 'center',
+                y: '35',
+                icon: 'stack',
+                itemWidth: 10,
+                itemHeight: 10,
+                textStyle: {
+                    color: '#1bb4f6'
+                },
+                data: ['已采纳']
+            },
+            xAxis: [{
+                type: 'category',
+                boundaryGap: false,
+                axisLabel: {
+                    color: fontColor
+                },
+                axisLine: {
+                    show: true,
+                    lineStyle: {
+                        color: '#686e7a'
+                    }
+                },
+                axisTick: {
+                    show: false,
+                },
+                splitLine: {
+                    show: true,
+                    lineStyle: {
+                        color: '#686e7a'
+                    }
+                },
+                data: ['01/01', '02/01', '03/01', '04/01', '05/01', '06/01']
+            }],
+            yAxis: [{
+
+                    type: 'value',
+                    name: '',
+                    // min:0,
+                    // max:1087664,
+                    axisLabel: {
+                        formatter: '{value}',
+                        textStyle: {
+                            color: fontColor
+                        }
+                    },
+                    axisLine: {
+                        lineStyle: {
+                            color: '#686e7a'
+                        }
+                    },
+                    axisTick: {
+                        show: false,
+                    },
+                    splitLine: {
+                        show: false,
+                        lineStyle: {
+                            color: '#11366e'
+                        }
+                    },
+                    data: [257271, 256481, 365849, 548765, 589745, 658475]
+                },
+
+            ],
+            series: [{
+                    name: '已采纳',
+                    type: 'line',
+                    stack: '总量',
+                    symbol: 'circle',
+                    symbolSize: 8,
+                    itemStyle: {
+                        normal: {
+                            color: '#20d180',
+                            lineStyle: {
+                                color: "#20d180",
+                                width: 1
+                            },
+                            areaStyle: {
+                                //color: '#94C9EC'
+                                color: new echarts.graphic.LinearGradient(0, 1, 0, 0, [{
+                                    offset: 0,
+                                    color: 'rgba(32, 209, 128,0)'
+                                }, {
+                                    offset: 1,
+                                    color: 'rgba(32, 209, 128,0.6)'
+                                }]),
+                            }
+                        }
+                    },
+                    markPoint: {
+                        itemStyle: {
+                            normal: {
+                                color: 'red'
+                            }
+                        }
+                    },
+                    data: [257271, 256481, 365849, 548765, 589745, 658475]
+                },
+
+
+            ]
+        };
+        myChart6.setOption(option6);
+    };getEcharts6();
+
+        // 园区能源计量第3个echarts图
+        function getEcharts7() {
+        var myChart7 = echarts.init(document.getElementById('mainRow3_righs_body3'));
+        var fontColor = '#686e7a';
+        var option7 = {
+            // backgroundColor:'#11183c',
+            grid: {
+                left: '5%',
+                right: '10%',
+                top: '10%',
+                bottom: '5%',
+                containLabel: true
+            },
+            tooltip: {
+                show: true,
+                trigger: 'item'
+            },
+            legend: {
+                show: false,
+                x: 'center',
+                y: '35',
+                icon: 'stack',
+                itemWidth: 10,
+                itemHeight: 10,
+                textStyle: {
+                    color: '#1bb4f6'
+                },
+                data: ['已采纳']
+            },
+            xAxis: [{
+                type: 'category',
+                boundaryGap: false,
+                axisLabel: {
+                    color: fontColor
+                },
+                axisLine: {
+                    show: true,
+                    lineStyle: {
+                        color: '#686e7a'
+                    }
+                },
+                axisTick: {
+                    show: false,
+                },
+                splitLine: {
+                    show: true,
+                    lineStyle: {
+                        color: '#686e7a'
+                    }
+                },
+                data: ['01/01', '02/01', '03/01', '04/01', '05/01', '06/01']
+            }],
+            yAxis: [{
+
+                    type: 'value',
+                    name: '',
+                    // min:0,
+                    // max:1087664,
+                    axisLabel: {
+                        formatter: '{value}',
+                        textStyle: {
+                            color: fontColor
+                        }
+                    },
+                    axisLine: {
+                        lineStyle: {
+                            color: '#686e7a'
+                        }
+                    },
+                    axisTick: {
+                        show: false,
+                    },
+                    splitLine: {
+                        show: false,
+                        lineStyle: {
+                            color: '#11366e'
+                        }
+                    },
+                    data: [257271, 256481, 365849, 548765, 589745, 658475]
+                },
+
+            ],
+            series: [{
+                    name: '已采纳',
+                    type: 'line',
+                    stack: '总量',
+                    symbol: 'circle',
+                    symbolSize: 8,
+                    itemStyle: {
+                        normal: {
+                            color: '#ffb137',
+                            lineStyle: {
+                                color: "#ffb137",
+                                width: 1
+                            },
+                            areaStyle: {
+                                //color: '#94C9EC'
+                                color: new echarts.graphic.LinearGradient(0, 1, 0, 0, [{
+                                    offset: 0,
+                                    color: 'rgba(255, 177, 55,0)'
+                                }, {
+                                    offset: 1,
+                                    color: 'rgba(255, 177, 55,0.6)'
+                                }]),
+                            }
+                        }
+                    },
+                    markPoint: {
+                        itemStyle: {
+                            normal: {
+                                color: 'red'
+                            }
+                        }
+                    },
+                    data: [257271, 256481, 365849, 548765, 589745, 658475]
+                },
+
+
+            ]
+        };
+        myChart7.setOption(option7);
+    };getEcharts7();
+
+        // 园区能源计量第4个echarts图
+        function getEcharts8() {
+        var myChart8 = echarts.init(document.getElementById('mainRow3_righs_body4'));
+        var fontColor = '#686e7a';
+        var option8 = {
+            // backgroundColor:'#11183c',
+            grid: {
+                left: '5%',
+                right: '10%',
+                top: '10%',
+                bottom: '5%',
+                containLabel: true
+            },
+            tooltip: {
+                show: true,
+                trigger: 'item'
+            },
+            legend: {
+                show: false,
+                x: 'center',
+                y: '35',
+                icon: 'stack',
+                itemWidth: 10,
+                itemHeight: 10,
+                textStyle: {
+                    color: '#1bb4f6'
+                },
+                data: ['已采纳']
+            },
+            xAxis: [{
+                type: 'category',
+                boundaryGap: false,
+                axisLabel: {
+                    color: fontColor
+                },
+                axisLine: {
+                    show: true,
+                    lineStyle: {
+                        color: '#686e7a'
+                    }
+                },
+                axisTick: {
+                    show: false,
+                },
+                splitLine: {
+                    show: true,
+                    lineStyle: {
+                        color: '#686e7a'
+                    }
+                },
+                data: ['01/01', '02/01', '03/01', '04/01', '05/01', '06/01']
+            }],
+            yAxis: [{
+
+                    type: 'value',
+                    name: '',
+                    // min:0,
+                    // max:1087664,
+                    axisLabel: {
+                        formatter: '{value}',
+                        textStyle: {
+                            color: fontColor
+                        }
+                    },
+                    axisLine: {
+                        lineStyle: {
+                            color: '#686e7a'
+                        }
+                    },
+                    axisTick: {
+                        show: false,
+                    },
+                    splitLine: {
+                        show: false,
+                        lineStyle: {
+                            color: '#11366e'
+                        }
+                    },
+                    data: [257271, 256481, 365849, 548765, 589745, 658475]
+                },
+
+            ],
+            series: [{
+                    name: '已采纳',
+                    type: 'line',
+                    stack: '总量',
+                    symbol: 'circle',
+                    symbolSize: 8,
+                    itemStyle: {
+                        normal: {
+                            color: '#ff4949',
+                            lineStyle: {
+                                color: "#ff4949",
+                                width: 1
+                            },
+                            areaStyle: {
+                                //color: '#94C9EC'
+                                color: new echarts.graphic.LinearGradient(0, 1, 0, 0, [{
+                                    offset: 0,
+                                    color: 'rgba(255, 73, 73,0)'
+                                }, {
+                                    offset: 1,
+                                    color: 'rgba(255, 73, 73,0.6)'
+                                }]),
+                            }
+                        }
+                    },
+                    markPoint: {
+                        itemStyle: {
+                            normal: {
+                                color: 'red'
+                            }
+                        }
+                    },
+                    data: [257271, 256481, 365849, 548765, 589745, 658475]
+                },
+
+
+            ]
+        };
+        myChart8.setOption(option8);
+    };getEcharts8();
+
+        // 比例施肥器压降参考曲线
+        function getEcharts9() {
+        var myChart9 = echarts.init(document.getElementById('mainRow6_mid_body'));
+        var option9 = {
+            // backgroundColor: "#0000000",
+            legend: {
+                orient: 'vertical',
+                top: "center",
+                right: "15%",
+                data: ['叶类菜', '黄瓜', '西红柿', '辣椒', '土豆'],
+                textStyle: {
+                    color: "#fff",
+                    fontSize: 16
+                }
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: '{a} <br/>{b} : {c} ({d}%)'
+            },
+            series: [{
+                name: '',
+                type: 'pie',
+                radius: ['30%', '80%'],
+                center: ['40%', '50%'],
+                roseType: 'radius',
+                label: {
+                    show: false,
+                    normal: {
+                        show: false,
+                        position: 'outside',
+                        fontSize: 16
+                    }
+                },
+                labelLine: {
+                    show: false,
+                    length: 1,
+                    length2: 20,
+                    smooth: true
+                },
+                data: [{
+                        value: 4,
+                        name: '黄瓜',
+                        itemStyle: {
+                            color: "rgba(53, 202, 116,0.7)",
+                            borderColor: "rgba(53, 202, 116,1)",
+                            borderWidth: 3
+                        }
+                    },
+                    {
+                        value: 3,
+                        name: '西红柿',
+                        itemStyle: {
+                            color: "rgba(0, 119, 220,0.7)",
+                            borderColor: "rgba(0, 119, 220,1)",
+                            borderWidth: 3
+                        }
+                    },
+                    {
+                        value: 2,
+                        name: '辣椒',
+                        itemStyle: {
+                            color: "rgba(213, 62, 70,0.7)",
+                            borderColor: "rgba(213, 62, 70,1)",
+                            borderWidth: 3
+                        }
+                    },
+                    {
+                        value: 1,
+                        name: '土豆',
+                        itemStyle: {
+                            color: "rgba(122,60,235,0.7)",
+                            borderColor: "rgba(122,60,235,1)",
+                            borderWidth: 3
+                        }
+                    },
+                    {
+                        value: 5,
+                        name: '叶类菜',
+                        itemStyle: {
+                            color: "rgba(255, 177, 55,0.7)",
+                            borderColor: "rgba(255, 177, 55,1)",
+                            borderWidth: 3
+                        }
+                    }
+                ]
+            }]
+        };
+        myChart9.setOption(option9);
+    };getEcharts9();
+
+        // 农产品生产周期
+        function getEcharts10() {
+        var myChart10 = echarts.init(document.getElementById('mainRow5_echarts1'));
+        var fontColor = '#30eee9';
+        var option10 = {
+            title: {
+                text: '比例施肥器压降参考曲线',
+                top: '12%',
+                left: '2%',
+                textStyle: {
+                    color: '#0589c9',
+                    align: 'center',
+                    fontSize: 20,
+                }
+            },
+            // backgroundColor:'#11183c',
+            grid: {
+                left: '6%',
+                right: '8%',
+                top: '40%',
+                bottom: '6%',
+                containLabel: true
+            },
+            tooltip: {
+                show: true,
+                trigger: 'item'
+            },
+            legend: {
+                show: true,
+                x: '45%',
+                top: '12%',
+                y: '35%',
+                icon: 'stack',
+                itemWidth: 20,
+                itemHeight: 10,
+                textStyle: {
+                    color: '#1bb4f6',
+                    fontSize: 13,
+                },
+                data: ['TF-25 005', 'TF-25 002', 'TF-25 001']
+            },
+            xAxis: [{
+                type: 'category',
+                boundaryGap: false,
+                axisLabel: {
+                    color: fontColor
+                },
+                axisLine: {
+                    show: true,
+                    lineStyle: {
+                        color: '#397cbc'
+                    }
+                },
+                axisTick: {
+                    show: false,
+                },
+                splitLine: {
+                    show: true,
+                    lineStyle: {
+                        color: '#195384'
+                    }
+                },
+                data: ['1000', '3000', '4000', '5000', '10000', '15000', '20000', '25000']
+            }],
+            yAxis: [{
+                    type: 'value',
+                    name: '',
+                    min: 0,
+                    max: 2.5,
+                    axisLabel: {
+                        formatter: '{value}',
+                        textStyle: {
+                            color: '#2ad1d2'
+                        }
+                    },
+                    axisLine: {
+                        show: true,
+                        lineStyle: {
+                            color: '#27b4c2'
+                        }
+                    },
+                    axisTick: {
+                        show: false,
+                    },
+                    splitLine: {
+                        show: false,
+                        lineStyle: {
+                            color: '#11366e'
+                        }
+                    }
+                },
+                {
+                    type: 'value',
+                    name: '',
+                    min: 0,
+                    max: 1000,
+                    axisLabel: {
+                        show: false,
+                        formatter: '{value} %',
+                        textStyle: {
+                            color: '#186afe'
+                        }
+                    },
+                    axisLine: {
+                        lineStyle: {
+                            color: '#186afe'
+                        }
+                    },
+                    axisTick: {
+                        show: false,
+                    },
+                    splitLine: {
+                        show: false,
+                        lineStyle: {
+                            color: '#11366e'
+                        }
+                    }
+
+                }
+            ],
+            series: [{
+                    name: 'TF-25 005',
+                    type: 'line',
+                    stack: '总量',
+                    symbol: 'circle',
+                    symbolSize: 8,
+                    itemStyle: {
+                        normal: {
+                            color: '#0092f6',
+                            lineStyle: {
+                                color: "#0092f6",
+                                width: 1
+                            },
+                            areaStyle: {
+                                //color: '#94C9EC'
+                                color: new echarts.graphic.LinearGradient(0, 1, 0, 0, [{
+                                    offset: 0,
+                                    color: 'rgba(7,44,90,0.3)'
+                                }, {
+                                    offset: 1,
+                                    color: 'rgba(0,146,246,0.9)'
+                                }]),
+                            }
+                        }
+                    },
+                    markPoint: {
+                        itemStyle: {
+                            normal: {
+                                color: 'red'
+                            }
+                        }
+                    },
+                    data: [0.2, 0.18, 0.25, 0.32, 0.41, 0.5, 0.52, 0.65, 0.75]
+                },
+                {
+                    name: 'TF-25 002',
+                    type: 'line',
+                    stack: '总量',
+                    symbol: 'circle',
+                    symbolSize: 8,
+
+                    itemStyle: {
+                        normal: {
+                            color: '#00d4c7',
+                            lineStyle: {
+                                color: "#00d4c7",
+                                width: 1
+                            },
+                            areaStyle: {
+                                //color: '#94C9EC'
+                                color: new echarts.graphic.LinearGradient(0, 1, 0, 0, [{
+                                    offset: 0,
+                                    color: 'rgba(7,44,90,0.3)'
+                                }, {
+                                    offset: 1,
+                                    color: 'rgba(0,212,199,0.9)'
+                                }]),
+                            }
+                        }
+                    },
+                    data: [0.2, 0.18, 0.25, 0.32, 0.41, 0.5, 0.52, 0.65, 0.75]
+                },
+                {
+                    name: 'TF-25 001',
+                    type: 'line',
+                    stack: '总量',
+                    symbol: 'circle',
+                    symbolSize: 8,
+                    itemStyle: {
+                        normal: {
+                            color: '#aecb56',
+                            lineStyle: {
+                                color: "#aecb56",
+                                width: 1
+                            },
+                            areaStyle: {
+                                //color: '#94C9EC'
+                                color: new echarts.graphic.LinearGradient(0, 1, 0, 0, [{
+                                    offset: 0,
+                                    color: 'rgba(7,44,90,0.3)'
+                                }, {
+                                    offset: 1,
+                                    color: 'rgba(114,144,89,0.9)'
+                                }]),
+                            }
+                        }
+                    },
+                    data: [0.2, 0.18, 0.25, 0.32, 0.41, 0.5, 0.52, 0.65, 0.75]
+                },
+
+            ]
+        };
+        myChart10.setOption(option10);
+    };getEcharts10();
+    </script>
+</body>
+
+</html>

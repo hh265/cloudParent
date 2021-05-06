@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>添加传感器</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../static/layui/css/layui.css" media="all">
+    <link rel="stylesheet" th:href="@{/static/css/common.css}">
+    <style>
+        .c-n-h {
+            /*color: white;*/
+            width: 10rem;
+            text-align: center;
+            line-height: 2rem;
+        }
+
+    </style>
+</head>
+<body>
+<div>
+    <div style="display: flex ;margin-top: 1rem">
+        <div class="c-n-h">传感器名称：</div>
+        <input class="layui-input" placeholder="请输入名称" id="name">
+    </div>
+    <br>
+    <div style="display: flex">
+        <div class="c-n-h">单位：</div>
+        <input class="layui-input" placeholder="请输入传感器单位" id="unit">
+    </div>
+    <br>
+    <div style="display: flex">
+        <div class="c-n-h">小数位：</div>
+        <input class="layui-input" placeholder="请输入传感器小数位数" type="number" id="bit">
+    </div>
+    <br>
+    <div class="layui-btn" id="save" style="
+    margin-top: 2rem;
+    margin-left: 45%;">添加
+    </div>
+</div>
+<script th:src="@{/static/js/jquery.min.js?v=2.1.4}"></script>
+<script th:src="@{/static/layui/layui.js}" charset="utf-8"></script>
+<script th:src="@{/static/js/common.js}" charset="utf-8"></script>
+<script>
+    var deviceNumber;
+    layui.use('table', function () {
+        table = layui.table;
+        $("#save").on("click", function () {
+            layer.load(2);
+            $.ajax({
+                url: "../sensor/addSensor",
+                data: {
+                    "deviceNumber": deviceNumber,
+                    "name": $("#name").val(),
+                    "unit": $("#unit").val(),
+                    "bit": $("#bit").val()
+                },
+                dataType: "json",
+                timeout: 30000,
+                error: function (data, type, err) {
+                    console.log(err);
+                    layer.closeAll('loading');
+                    layer.msg('添加失败');
+                },
+                success: function (data) {
+                    layer.msg(data.msg);
+                    if (data.state == 'success') {
+                        parent.initSensorTable();
+                        setTimeout(function () {
+                           parent.layer.closeAll();
+                        },1000)
+                    }
+                }
+            });
+        });
+    })
+</script>
+</body>
+</html>

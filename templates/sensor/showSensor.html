@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh_CN" xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" th:href="@{/static/layui/css/layui.css}" media="all">
+    <link rel="stylesheet" th:href="@{/static/css/index/main.css}" media="all">
+    <link rel="stylesheet" th:href="@{/static/css/index/app.css}" media="all">
+    <link rel="stylesheet" th:href="@{static/css/common.css}">
+    <style>
+        .glyphicon {
+            font-size: 10px;
+            margin-left: 1rem;
+        }
+
+        #addSensor {
+            margin: 1rem
+        }
+
+        .laytable-cell-1-0-0 {
+            /*background: #484848;*/
+            display: flex;
+            padding-left: 10rem;
+        }
+
+    </style>
+</head>
+
+<body>
+<div id="addSensor" class="layui-btn">添加传感器</div>
+<table class="layui-hide layui-table " id="sensor" lay-filter="sensor"></table>
+<script th:src="@{/static/js/jquery.min.js?v=2.1.4}"></script>
+<script th:src="@{/static/layui/layui.js}" charset="utf-8"></script>
+<script>
+    var deviceNumber;
+
+    function initSensorTable() {
+        layui.use('table', function () {
+            table = layui.table;
+            table.render({
+                elem: '#sensor'
+                , url: '../deviceManage/getDeviceSensorList?sensorNcode=' + deviceNumber
+                , cols: [
+                    [
+                        {
+                            field: 'sensorName', title: '', align: 'center', minWidth: 300, templet: function (d) {
+                                if (d.sensorData == null) {
+
+                                    return '<span style="width: 10rem;display: block">' + d.sensorName + '</span> <span style="color: red">等待上传数据</span>'
+                                }
+                                return '<span style="width: 10rem;display: block">' + d.sensorName + '</span>  <span style="color: green;margin-right: 1rem">' + d.sensorData + '</span> ' + d.unit
+                            }
+                        },
+                        {
+                            field: '', title: '', align: 'center', event: 'edit', width: 100, templet: function (d) {
+                                return '修改 <i class="glyphicon glyphicon-pencil"></i>'
+                            }
+                        }, {
+                        field: '', title: '', align: 'center', event: 'del', width: 100, templet: function (d) {
+                            return '删除 <i class="glyphicon glyphicon-trash"></i>'
+                        }
+                    }
+                    ]
+                ]
+                , page: false
+                , skin: 'nob'
+            });
+
+            $('#addSensor').on('click', function () {
+                // layer.prompt({
+                //     formType: 2
+                //     , title: ''
+                //     , value: ''
+                // }, function (value, index) {
+                //     layer.close(index);
+                // });
+                layer.open({
+                    type: 2,
+                    area: ['50%', '80%'],
+                    title: '添加传感器',
+                    anim: 3,
+                    content: '../addSensor',
+                    success: function (layero, index) {
+                        var iframeWin = window[layero.find('iframe')[0]['name']];
+                        iframeWin.deviceNumber = deviceNumber;
+                    }
+                });
+
+            });
+
+            table.on('tool(sensor)', function (obj) {
+                var data = obj.data;
+                if (obj.event === 'edit') {
+                    layer.open({
+                        type: 2,
+                        area: ['50%', '80%'],
+                        title: '修改传感器',
+                        anim: 3,
+                        content: '../editSensor?id=' + data.id,
+                    });
+
+
+                    // layer.prompt({
+                    //     formType: 2
+                    //     , title: '修改传感器名称'
+                    //     , value: data.sensorName
+                    // }, function (value, index) {
+                    //     layer.load(2);
+                    //
+                    // });
+                } else if (obj.event === 'del') {
+                    layer.confirm('确定删除？', {
+                        btn: ['确定', '取消'],
+                        title: ''
+                    }, function (index) {
+                        layer.load(2);
+                        $.ajax({
+                            url: "sensor/delSensor",
+                            data: {
+                                deviceNumber: deviceNumber,
+                                id: data.id
+                            },
+                            dataType: "json",
+                            type: "post",
+                            timeout: 30000,
+                            error: function (data, type, err) {
+                                layer.closeAll('loading');
+                                layer.msg('删除失败', {
+                                    offset: '6px'
+                                });
+                            },
+                            success: function (data) {
+                                layer.closeAll('loading');
+                                layer.msg(data.msg);
+                                if ('success' == data.state) {
+                                    initSensorTable();
+                                }
+                            }
+                        });
+                    });
+                }
+            });
+        });
+    }
+
+</script>
+</body>
+
+</html>

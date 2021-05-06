@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" ></html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>分配角色</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" th:href="@{/static/layui/css/layui.css}" media="all">
+    <script th:src="@{/static/js/common.js}" charset="utf-8"></script>
+
+</head>
+<body>
+<form class="layui-form" >
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">选择角色</label>
+        <div class="layui-input-block">
+            <input type="text"  autocomplete="off" class="layui-input" id="reloSelecter" placeholder="不填写则不修改" >
+            <input type="hidden"  id="roles" name="roles">
+        </div>
+    </div>
+</form>
+</body>
+<script th:src="@{/static/js/jquery.min.js?v=2.1.4}"></script>
+<script th:src="@{/static/layui/layui.js}"  charset="utf-8"></script>
+<script type="text/javascript" th:src="@{/static/js/tableSelect.js}"></script>
+<script>
+    layui.use('table', function(){
+        //下拉表格
+        var tableSelect = layui.tableSelect;
+        tableSelect.render({
+            elem: '#reloSelecter',
+            //searchKey: 'name',
+            //searchPlaceholder: '传感器名字',
+            table: {
+                url:'../roleManage/getRoleList',
+                cols: [
+                    [
+                        { type: 'checkbox' },
+                        { field: 'id', title: 'id', width:100 },
+                        { field: 'name', title: '角色', width:100 },
+                        { field: 'desc', title: '角色描述', width:100 },
+                    ]
+                ]
+            },
+            done: function (elem, data) {
+                var NEWJSON = [];
+                var roles =[];
+                layui.each(data.data, function (index, item) {
+                    NEWJSON.push(item.name);
+                    roles.push(item.id);
+                });
+                elem.val(NEWJSON.join(","));
+                $("#roles").val(roles.join(","));
+            }
+        })
+    });
+
+</script>
+</html>

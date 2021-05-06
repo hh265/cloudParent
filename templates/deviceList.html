@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>deviceList</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../static/layui/css/layui.css" media="all">
+    <link rel="stylesheet" th:href="@{/static/css/index/main.css}" media="all">
+    <link rel="stylesheet" th:href="@{/static/css/index/app.css}" media="all">
+    <link rel="stylesheet" th:href="@{/static/css/common.css}">
+    <style>
+        .lay-btn {
+            margin-left: 5rem;
+        }
+
+        .lay-btn1 {
+            float: right;
+        }
+
+        .lay-btn-bg {
+            padding: 3px;
+            font-size: 10px;
+            margin-top: 5px;
+            background-color: white;
+            border: 2px solid #4CAF50;
+            color: black;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 26%;
+        }
+
+        .lay-btn-bg:hover {
+            background-color: #4CAF50;
+            color: white;
+            box-shadow: 0 10px 10px 0 rgba(0,0,0,0.24);
+        }
+
+        .glyphicontext {
+            display: block;
+            margin-top: 3px;
+            margin-left: 1rem;
+            margin-right: 1rem;
+            cursor: pointer;
+            /*color: #9797f5;*/
+        }
+
+        .glcontext {
+            color: darkviolet;
+        }
+
+        .abc {
+            float: right;
+        }
+
+        body::-webkit-scrollbar {
+            width: 0px;
+            height: 0px;
+        }
+
+        .layui-table-tool .layui-inline {
+            background-color: #eaeaea;
+        }
+
+        .online {
+            color: #458B74;
+        }
+
+        .offline {
+            color: #8B7500;
+        }
+    </style>
+</head>
+<body>
+<div class="layui-inline bg-transparent">
+    <!--<button id="deviceDetail" class="layui-btn layui-btn-primary layui-btn-radius" lay-event="detail"> 查看设备
+    </button>-->
+    <button id="addDevice" class="layui-btn layui-btn-primary layui-btn-radius" lay-event="addDevice"> 添加设备
+    </button>
+</div>
+<div class="layui-inline abc">
+    <div class="layui-btn " id="search">
+        <i class="layui-icon layui-icon-search "></i>
+    </div>
+</div>
+<div class="layui-inline abc">
+    <input type="text" class="layui-input" name="aCode" id="aCode" autocomplete="off"
+           placeholder="设备编码">
+</div>
+<div>
+    <table class="layui-hide" id="device" lay-filter="device"></table>
+</div>
+
+<script th:src="@{/static/js/jquery.min.js?v=2.1.4}"></script>
+<script th:src="@{/static/layui/layui.js}" charset="utf-8"></script>
+<script th:src="@{/static/js/jquery.nicescroll.js}" charset="utf-8"></script>
+<script th:src="@{/static/i18n/jquery.i18n.properties.js}"></script>
+<script th:src="@{/static/js/common.js}" charset="utf-8"></script>
+<script>
+    var table;
+    layui.use('table', function () {
+        var tableData = [
+            {
+                field: 'deviceNumber',
+                title: $.i18n.prop('deviceNo'),
+                minWidth: 220,
+                type: 'data',
+                align: 'center',
+                templet: function (d) {
+                    console.log('"function" == typeof r.templet ? r.templet(n) : i(t(r.templet).html()')
+                    var html = '<div style="margin-left: 1rem;border:1px solid gray;padding: 1rem;width: 90vw">'
+                        + d.name + ' <br> ' +
+                        d.deviceNumber +
+                        ' : ' +
+                        ((d.onLineState == 1 ? "<span style='color: green'>在线</span>" : "离线")) +
+                        ' <br>' + d.time + '<br>'
+                        // '<div ' +((d.deviceType == 2 ? "style=\"cursor: pointer; color: #9797f5\" onclick=\"sendCommand(\'" + d.deviceNumber + "\')\"" : ""))
+                        // + '>' + d.data + '</div>'//       ' + d.deviceType + ',        \'' + d.deviceNumber + '\'
+                    ;
+                    html += '<div class="glcontext">' +
+                        '<button class="lay-btn-bg lay-btn" onclick="showSensor(' + d.deviceType + ',\'' + d.deviceNumber + '\',\'' + d.name + '\')"><i class="glyphicon glyphicon-move">' +
+                        '<span class="glyphicontext">查看</span></i>' +
+                        '</button>' +
+                        '<button class="lay-btn-bg lay-btn"  onclick="edit(\'' + d.deviceNumber + '\',\'' + d.name + '\')"><i class="glyphicon glyphicon-edit">' +
+                        '<span class="glyphicontext" >修改</span></i>' +
+                        '</button>' +
+                        '<button class="lay-btn-bg lay-btn"  onclick="history(\'' + d.deviceNumber + '\',\'' + d.name + '\')"><i class="glyphicon glyphicon-tasks">' +
+                        '<span class="glyphicontext" >记录</span></i>' +
+                        '</button>' +
+                        '<button class="lay-btn-bg lay-btn1"  onclick="del(' + d.id + ',\'' + d.name + '\')"><i class="glyphicon glyphicon-share">' +
+                        '<span class="glyphicontext" >删除</span></i>' +
+                        '</button>' +
+                        '</div></div>';
+                    return html;
+                }
+            }
+        ];
+
+        table = layui.table;
+        table.render({
+            elem: '#device'
+            , url: '../deviceManage/getDeviceList'
+            , title: '区域列表'
+            , cols: [tableData]
+            , page: true
+            , error: function (e, t) {
+            }
+        });
+
+        $('#search').on('click', function () {
+            var val = $('#aCode').val();
+            console.log('reload:' + val)
+            table.reload('device', {
+                where: {
+                    deviceCode: val
+                }
+            });
+            $('#aCode').val(val)
+        });
+
+        //监听行工具事件
+        table.on('tool(device)', function (obj) {
+            var data = obj.data;
+            if (obj.event === 'del') {
+                layer.confirm($.i18n.prop('confirmDelete'), {
+                    btn: [$.i18n.prop('yes'), $.i18n.prop('no')],
+                    title: $.i18n.prop('info')
+                }, function (index) {
+                    layer.load(2);
+                    $.ajax({
+                        url: "user/delDevice",
+                        data: obj.data,
+                        dataType: "json",
+                        type: "post",
+                        timeout: 30000,
+                        error: function (data, type, err) {
+                            layer.closeAll('loading');
+                            layer.msg($.i18n.prop('fail'), {
+                                offset: '6px'
+                            });
+                        },
+                        success: function (data) {
+                            layer.closeAll('loading');
+                            layer.msg($.i18n.prop(data.msg));
+                            if ('success' == data.state) {
+                                $('.layui-laypage-btn').click();
+                            }
+                        }
+                    });
+                });
+            }
+        });
+    });
+
+
+    function sendCommand(deviceNumber) {
+        console.log(deviceNumber);
+        layer.open({
+            type: 2,
+            area: ['50%', '80%'],
+            title: '下发控制',
+            anim: 3,
+            content: 'sendCommand',
+            success: function (layero, index) {
+                var iframeWin = window[layero.find('iframe')[0]['name']];
+                iframeWin.deviceNumber = deviceNumber;
+                iframeWin.initSensorTable();
+            }
+        });
+    }
+
+    function showSensor(deviceType,deviceNumber,name) {
+        layer.open({
+            type: 2,
+            area: ['80%', '95%'],
+            title: '查看数据(' + name + ')',
+            anim: 3,
+            content: 'showSensor',
+            success: function (layero, index) {
+                var iframeWin = window[layero.find('iframe')[0]['name']];
+                iframeWin.deviceNumber = deviceNumber;
+                iframeWin.initSensorTable();
+            }
+        });
+    }
+
+    function show(deviceType,deviceNumber,name) {
+        console.log(deviceNumber, deviceType,name)
+        if (deviceType == '2') {
+            sendCommand(deviceNumber);
+        } else {
+            showSensor(deviceNumber,name);
+        }
+    }
+
+    function del(id,name) {
+        layer.confirm('确认删除？', {
+            title:'删除设备：(' + name + ')',
+            btn: ['确认', '取消']
+        }, function () {
+            layer.load(2);
+            $.ajax({
+                url: "../device/delDevice",
+                data: {
+                    id: id,
+                },
+                dataType: "json",
+                type: 'POST',
+                timeout: 30000,
+                error: function (data, type, err) {
+                    console.log(err);
+                    layer.closeAll('loading');
+                    layer.msg('删除失败');
+                },
+                success: function (data) {
+                    layer.closeAll('loading');
+                    layer.msg(data.msg);
+                    if (data.state == 'success') {
+                        $(".layui-laypage-btn").click();
+                    }
+                }
+            });
+        });
+    }
+
+    function edit(deviceNumber,name) {
+        layer.open({
+            type: 2,
+            area: ['80%', '95%'],
+            title: '修改设备：(' + name + ')',
+            anim: 3,
+            content: 'editDevice',
+            success: function (layero, index) {
+                var iframeWin = window[layero.find('iframe')[0]['name']];
+                iframeWin.deviceNumber = deviceNumber;
+                iframeWin.initData();
+            }
+        });
+    }
+
+    function history(deviceNumber,name) {
+        layer.open({
+            type: 2,
+            area: ['80%', '95%'],
+            title: '查看数据(' + name + ')',
+            anim: 3,
+            content: 'showHistory',
+            success: function (layero, index) {
+                var iframeWin = window[layero.find('iframe')[0]['name']];
+                iframeWin.deviceNumber = deviceNumber;
+                iframeWin.initTable();
+            }
+        });
+    }
+</script>
+
+</body>
+</html>

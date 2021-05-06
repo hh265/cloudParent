@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${system_name}"></title>
+    <link rel="stylesheet" th:href="@{/static/css/index/main.css}" media="all">
+    <link rel="stylesheet" th:href="@{/static/css/index/app.css}" media="all">
+    <style>
+        .col-lg-10 {
+            margin: 1rem;
+        }
+        .hhcolor {
+            color: #0b0b0b;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+<div class="col-lg-10">
+    <div class=" row">
+        <div class="col-md-3 col-sm-3 col-xs-6">
+            <a data-toggle="tooltip" title="" class="well top-block" href="#" data-original-title="6 new members.">
+                <i class="glyphicon glyphicon-user blue"></i>
+                <div>用户</div>
+                <div th:text="${data.accountNum}">507</div>
+                <!--<span class="notification">6</span>-->
+            </a>
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-6">
+            <a data-toggle="tooltip" title="" class="well top-block" href="#" data-original-title="4 new pro members.">
+                <i class="glyphicon glyphicon-star green"></i>
+                <div>设备</div>
+                <div th:text="${data.deviceNum}">0</div>
+                <!--<span class="notification green">4</span>-->
+            </a>
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-6">
+            <a data-toggle="tooltip" title="" class="well top-block" href="#" data-original-title="$34 new sales.">
+                <i class="glyphicon glyphicon-shopping-cart yellow"></i>
+                <div>新增</div>
+                <div th:text="${data.dataNum}">0</div>
+                <!--<span class="notification yellow">$34</span>-->
+            </a>
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-6">
+            <a data-toggle="tooltip" title="" class="well top-block" href="#" data-original-title="12 new messages.">
+                <i class="glyphicon glyphicon-envelope red"></i>
+                <div>消息</div>
+                <div th:text="${data.trigNum}">0</div>
+                <!--<span class="notification red">12</span>-->
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="box col-md-12">
+            <div class="box-inner">
+                <div class="box-header well">
+                    <h2><i class="glyphicon glyphicon-info-sign"></i> 项目介绍</h2>
+                    <div class="box-icon">
+                        <a href="#" class="btn btn-setting btn-round btn-default"><i class="glyphicon glyphicon-cog"></i></a>
+                    </div>
+                </div>
+                <div class="box-content row">
+                    <div class="col-lg-7 col-md-12">
+                        <div class="box">
+                            <div class="content">
+                                <input type="button" value="收起">
+                                <div class="test">
+                                    <p class="hhcolor">应用平台基于JAVA语言开发，可跨平台运行于Windows或Linux等服务器，
+                                        系统服务端架构采用 Spring Cloud + Redis + kafka + MySql + netty + shiro 基于springboot 采用微服务架构，
+                                        服务之间互相协调、互相配合，每个服务运行在其独立的进程中，
+                                        系统分为设备协议解析、云平台、报警功能等多个微服务，
+                                        每个可被独立部署，各个微服务之间是松耦合的。
+                                        同时集成Eureka、Ribbon、Hystrix、Zuul等，
+                                        通过对Mysql分库分表及Radis缓存加kafka队列处理可应对海量数据。
+                                        每个微服务仅关注于完成一件任务并很好地完成该任务，每个微服务均可以单独部署。
+                                        、前端系统采用Layui+JQuery+bootstrap+Html5等流行框架。</p>
+                                </div>
+                            </div>
+                        </div>
+
+
+                       <!-- <h1>物联网大数据中心 <br>
+                            <small>数字工厂</small>
+                        </h1>
+                        <p>
+                            <b>All pages in the menu are functional, take a look at all, please share this with your
+                               followers.</b>
+                        </p>
+                        <small>园区能源计量</small>
+                        <p>
+                            Energy measurement in the park
+                        </p>-->
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script th:src="@{/static/js/jquery.min.js?v=2.1.4}"></script>
+<script>
+    $(function(){
+        /*$(".test").hide();  // 默认隐藏状态*/
+        $(":button").click(function() {
+            $(".test").toggle('slow');  // 改变显隐状态
+            $(this).val($(this).val()=="收起"?"展开":"收起"); // 改变按钮的文字说明
+        })
+    })
+</script>
+</body>
+</html>

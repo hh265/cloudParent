@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>设备详情</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" th:href="@{/static/layui/css/layui.css}" media="all">
+    <link rel="stylesheet" th:href="@{/static/css/common.css}">
+
+</head>
+<body>
+
+
+<form class="layui-form" >
+
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">用户名</label>
+            <div class="layui-input-inline">
+                <input type="text"  name="userName"  autocomplete="off"  th:value="*{user.userName}" lay-verify="userName" class="layui-input">
+                <input type="hidden" id="id"  name="id"  autocomplete="off"  th:value="*{user.id}" >
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">密码</label>
+            <div class="layui-input-inline">
+                <input type="password" id="password" name="password"  autocomplete="off"  lay-verify="password" class="layui-input">
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">姓名</label>
+            <div class="layui-input-inline">
+                <input type="text" name="realName"  autocomplete="off"  th:value="*{user.realName}" class="layui-input">
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">邮箱</label>
+            <div class="layui-input-inline">
+                <input type="text" name="email"  autocomplete="off"  th:value="*{user.email}"  class="layui-input">
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">手机号</label>
+            <div class="layui-input-inline">
+                <input type="text" name="tel"  autocomplete="off"  th:value="*{user.tel}"  class="layui-input">
+            </div>
+        </div>
+    </div>
+</form>
+
+</body>
+<script th:src="@{/static/js/jquery.min.js?v=2.1.4}"></script>
+<script th:src="@{/static/layui/layui.js}"  charset="utf-8"></script>
+<script>
+    console.log($("#id").val());
+    if($("#id").val()>0) {
+        // $("#password").addClass("layui-disabled");
+        // $("#password").attr("readonly", "readonly");
+        layui.use('form', function () {
+            var form = layui.form;
+            form.verify({
+                userName: function (value) {
+                    var uPattern = /^[a-zA-Z0-9_-]{4,16}$/;
+                    if (!uPattern.test(value)) {
+                        return '用户名不符合规范';
+                    }
+                }, password: [/(.+){4,12}$/, '密码必须4到12位'],
+                email: [/.*@.*/, '邮箱不符合规范'],
+                tel: [/^1\d{10}$/, '手机号不符合规范']
+            });
+            /* form.on('submit(demo1)', function(data){
+            layer.alert(JSON.stringify(data.field), {
+                title: '最终的提交信息'
+            })
+            return false;
+        });*/
+        });
+    }
+</script>
+</html>
