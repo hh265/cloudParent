@@ -1,0 +1,425 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.d1 {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    font-size: 2vh;
+    position: absolute;
+    z-index: 1;
+    background: linear-gradient(to bottom, #3498DB 0%, #FDA5D2 100%);
+}
+
+.header {
+    height: 8%;
+    width: 100%;
+    display: flex;
+}
+
+.header_biaoti {
+    width: 33%;
+    height: 7vh;
+    line-height: 6.5vh;
+    text-align: center;
+    font-size: 1.5vw;
+    color: #01daf0;
+    font-weight: 900;
+}
+
+.header_a a{
+    text-decoration: none;
+    color: #fff9ec;
+    font-size: 1.5vh;
+    cursor: pointer;
+    right: 1vw;
+    top: 1vh;
+    position: absolute;
+}
+
+.header_a {
+    width: 30%;
+    height: 3vh;
+}
+
+.header_q {
+    width: 30%;
+    height: 3vh;
+}
+
+.main {
+    width: 100%;
+    height: 95%;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+}
+
+.numberMain {
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    height: 95%;
+}
+
+.agriculturalMain {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 96%;
+}
+
+.numberContent_1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    position: relative;
+    width: 100%;
+    height: 50%;
+    background-image: url("../../static/img/biana.png");
+    background-size: 100% 100%;
+}
+
+.numberContent_2 {
+    margin-top: 1vw;
+    width: 100%;
+    height: 50%;
+    background-image: url("../../static/img/bianbbk.png");
+    background-size: 100% 100%;
+}
+
+.agricultural_1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+    height: 50%;
+}
+.agricultural_2 {
+    margin-top: 1vw;
+    width: 100%;
+    height: 50%;
+    background-image: url("../../static/img/bianbk.png");
+    background-size: 100% 100%;
+}
+
+.agricultural_3 {
+    width: 50%;
+    height: 103%;
+    background-image: url("../../static/img/bian.png");
+    background-size: 100% 100%;
+}
+.agricultural_31 {
+    width: 100%;
+    height: 8%;
+}
+
+.agricultural_4 {
+    width: 50%;
+    height: 100%;
+    background-image: url("../../static/img/biankuang.png");
+    background-size: 100% 100%;
+}
+
+.num_3 {
+    width: 100%;
+    height: 30%;
+}
+
+.num_2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 85%;
+    height: 50%;
+    margin-left: 8%;
+}
+
+.num_1 {
+    width: 100%;
+    height: 10%;
+    display: flex;
+}
+
+.num_4 {
+    width: 50%;
+    height: 100%;
+}
+
+.num_5 {
+    width: 50%;
+    height: 100%;
+}
+
+.number_1 {
+    width: 98%;
+    font-size: 1.5vw;
+    color: #01daf0;
+    text-align: center;
+    font-weight: 900;
+}
+
+.number_4 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+    height: 20%;
+}
+
+.number_2 {
+    display: flex;
+    width: 100%;
+    height: 50%;
+}
+
+.number_3 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+    height: 30%;
+}
+
+.number_5 {
+    width: 19%;
+    height: 120%;
+    margin-left: -40% ;
+}
+
+.number_51 {
+    margin-left: -46% ;
+}
+
+.number_6 {
+    text-align: center;
+    line-height: 4vh;
+}
+
+.number_7 {
+    margin-left: -55%;
+    margin-top: 2%;
+}
+
+.number_21 {
+    width: 100%;
+    height: 12vh;
+    line-height: 12vh;
+    text-align: center;
+    font-size: 5vw;
+    color: #F7FE2E;
+    font-weight: 900;
+    font-family: 微软雅黑;
+}
+
+.number_31 {
+    width: 15%;
+    height: 65%;
+    margin-left: 4%;
+}
+
+.number_32 {
+    width: 50px;
+    height: 45px;
+}
+
+.number_33 {
+    line-height: 5vh;
+    text-align: center;
+    font-size: 2vh;
+    color: #01daf0;
+    margin-left: -8%;
+}
+
+.num_51 {
+    width: 100%;
+    height: 12vh;
+    line-height: 12vh;
+    text-align: center;
+    font-size: 5vw;
+    color: #01DF3A;
+    font-weight: 900;
+    font-family: 微软雅黑;
+}
+
+.num_52 {
+    line-height: 5vh;
+    text-align: center;
+    font-size: 2vh;
+    color: #01daf0;
+    margin-left: -30%;
+}
+
+.num_53 {
+    width: 15%;
+    height: 65%;
+    margin-left: -20%;
+}
+
+.num_31 span{
+    color: #FFB800;
+    font-size: 2.6vh;
+    line-height: 5vh;
+}
+
+.num_31 {
+    margin-left: 11%;
+    width: 80%;
+    height: 40%;
+    background-color: #5DA7D5;
+}
+
+.agr_31 {
+    width: 100%;
+    height: 80%;
+}
+
+.agr_33 {
+    width: 96%;
+    text-align: center;
+    font-size: 1.5vw;
+    color: #01daf0;
+    font-weight: 900;
+}
+
+.num_21 {
+    display: flex;
+    width: 100%;
+    height: 2%;
+}
+
+.num_22 {
+    width: 100%;
+    height: 100%;
+}
+
+.num_23 {
+    width: 98%;
+    text-align: center;
+    font-size: 1.5vw;
+    color: #01daf0;
+    font-weight: 900;
+}
+
+.agr_41 {
+    width: 96%;
+    text-align: center;
+    font-size: 1.5vw;
+    color: #01daf0;
+    font-weight: 900;
+}
+
+.agr_42 {
+    width: 100%;
+    height: 90%;
+}
+
+.agr_432 {
+    width: 81%;
+    height: 13%;
+    margin-top: 3%;
+    margin-left: 9%;
+}
+
+.agr_43 {
+    background: url('../../static/img/biank.png') no-repeat;
+    background-size: 100% 100%;
+}
+
+.span_4 {
+    line-height: 2.3vw;
+    text-align: center;
+    font-family: 微软雅黑;
+    font-size: 2vh;
+}
+.span_1 {
+    float: left;
+    color: #FE2E2E;
+}
+
+.span_2 {
+    margin-left: 12%;
+    color: #FA5858;
+}
+
+.span_3 {
+    float: right;
+    color: #DF0101;
+}
+
+.span_11 {
+    color: #2ECCFA;
+}
+
+.span_22 {
+    color: #58FAF4;
+}
+
+.span_33 {
+    color: #81F7F3;
+}
+
+.agr_431 {
+    background-color: #01A9DB;
+    background: url('../../static/img/bianb.png') no-repeat;
+    background-size: 101% 100%;
+}
+
+.div_1 {
+    width: 100%;
+    height: 9%;
+    display: flex;
+    margin: -1% 2%;
+}
+
+.div_2 {
+    width: 93%;
+    height: 84%;
+    margin-top: 4%;
+    margin-left: 5%;
+}
+
+.div_3 {
+    width: 100%;
+    height: 30%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.div_4 {
+    width: 43%;
+    height: 95%;
+    margin-left: -3%;
+    background: url('../../static/img/bianbb.png') no-repeat;
+    background-size: 100% 100%;
+}
+
+.span_7 {
+    font-family: 微软雅黑;
+    font-size: 2vh;
+}
+
+.span_5 {
+    line-height: 8vh;
+    margin-left: 8%;
+    color: #58FAF4;
+}
+
+.span_6 {
+    float: right;
+    color: #81F7F3;
+    margin-right: 3%;
+    margin-top: 13%;
+}
+
+.span_8 {
+    color: #ffc300;
+}
+
+.span_9 {
+    color: #000000;
+}
+

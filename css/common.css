@@ -1,0 +1,266 @@
+thead, tr, th, .layui-table-tool, .layui-table-view {
+    background-color: transparent;
+}
+
+.layui-table {
+    background-color: transparent;
+    /*color: #FAFAFA;*/
+}
+
+.bg-transparent {
+
+    background-color: transparent !important;
+}
+
+.layui-table-header {
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+/*body div div div div table tbody tr {*/
+/*background-image: none;*/
+/*}*/
+
+.layui-table tbody tr:hover, .layui-table thead tr, .layui-table-click, .layui-table-header, .layui-table-hover, .layui-table-mend, .layui-table-patch, .layui-table-tool, .layui-table-total, .layui-table-total tr, .layui-table[lay-even] tr:nth-child(even) {
+    background-color: transparent;
+}
+
+tbody tr {
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    height: 45px;
+}
+
+.layui-table td, .layui-table th, .layui-table-col-set, .layui-table-fixed-r, .layui-table-grid-down, .layui-table-header, .layui-table-page, .layui-table-tips-main, .layui-table-tool, .layui-table-total, .layui-table-view, .layui-table[lay-skin=line], .layui-table[lay-skin=row] {
+    border-width: 0 0 0px;
+}
+
+body {
+    background-color: transparent;
+}
+
+body::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+}
+
+.layui-form {
+    background-color: transparent;
+}
+
+.layui-table-tool-self .layui-inline {
+    background-color: #eaeaea;
+}
+
+.layui-laypage .layui-laypage-skip {
+    color: #fff;
+}
+
+.layui-table-page .layui-laypage span {
+    color: #fff;
+}
+
+.layui-table-box .layui-table-header {
+    margin-right: 10px;
+}
+
+.layui-form-switch {
+    background-color: transparent;
+}
+
+.layui-form-onswitch {
+    background-color: #5FB878;
+}
+
+.container-horizontal {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+
+.match_parent {
+    float: left;
+    height: 100px;
+    width: 100%;
+}
+
+.horizontal {
+    display: inline;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.horizontal-top {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+
+.horizontal-center {
+    display: flex;
+    flex-wrap: nowrap;
+    /* justify-content: center; */
+    margin: 0 auto;
+    align-items: center;
+}
+
+.horizontalLeft {
+    display: inline;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: left;
+    margin: 0 auto;
+    align-items: left;
+}
+
+.vertical {
+    display: flex;
+    position: relative;
+    flex-wrap: nowrap;
+    flex-direction: column;
+}
+
+.verticalCenter {
+    display: flex;
+    position: relative;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
+    align-items: center;
+}
+
+.verticalLeft {
+    display: flex;
+    position: relative;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+}
+
+.layui-btn-primary {
+    border: 1px solid #C9C9C9;
+    background-color: transparent;
+    color: #000000;
+}
+
+.layui-btn-primary:hover {
+    border-color: white;
+    color: white;
+}
+
+.layui-input, .layui-select, .layui-textarea {
+    background-color: transparent;
+    /*color: white;*/
+}
+
+.layui-table-tool .layui-inline {
+    background-color: transparent !important;
+}
+
+.layui-btn {
+    /*border: 1px solid gray;
+    background-color: #6b64646e;*/
+}
+
+.layui-laypage .layui-laypage-curr .layui-laypage-em {
+    background-color: #6b64646e;
+}
+
+.layui-table-header .layui-table {
+    display: none;
+}
+
+.layui-laypage button, .layui-laypage input {
+    background-color: transparent;
+    color: white;
+}
+
+.layui-flow-more a *, .layui-laypage input, .layui-table-view select[lay-ignore] {
+    background: transparent;
+    color: white;
+}
+
+.layui-table-tool-self {
+    display: none;
+}
+
+.layui-table-tool-temp {
+    padding-right: 76px;
+}
+
+.layui-table-view {
+    background: transparent;
+}
+
+.layui-table-tool {
+    background: transparent;
+}
+
+.layui-input {
+    background: transparent;
+}
+
+.layui-layer, .layui-layer-iframe {
+    /*background: #353434 !important;*/
+    /*border: 1px solid white;*/
+}
+
+.layui-form-label {
+  /*  color: white;*/
+}
+
+.layui-layer-content {
+    /*color: white;*/
+}
+
+.layui-layer-title {
+  /*  background: #343434 !important;
+    color: white !important;*/
+}
+
+.layui-layer-setwin {
+    /*background: gray;*/
+    padding-right: 10px;
+}
+
+.layui-layer-btn .layui-layer-btn0 {
+    /*background-color: #353434 !important;*/
+}
+
+.layui-layer-btn a {
+    /*background-color: rgb(128 128 128) !important;*/
+}
+
+.lay-btn-bg {
+    padding: 3px;
+    font-size: 10px;
+    margin-top: 5px;
+    background-color: white;
+    border: 2px solid #4CAF50;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+.lay-btn-bg:hover {
+    background-color: #4CAF50;
+    color: white;
+    box-shadow: 0 10px 10px 0 rgba(0,0,0,0.24);
+}
+
+.layui-laypage a {
+    color: #AFAFAF;
+}
